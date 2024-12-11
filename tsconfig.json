@@ -2,6 +2,11 @@
   "compilerOptions": {
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/app/*"],
+      "@library/*": ["./src/library/*"],
+    }
   },
   "files": [],
   "references": [

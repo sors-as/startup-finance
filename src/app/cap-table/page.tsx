@@ -8,11 +8,11 @@ import {
   createConversionStore,
 } from "./state/ConversionState";
 import { getRandomData, initialState } from "./state/initialState";
-import { compressState, decompressState } from "@/utils/stateCompression";
+import { compressState, decompressState } from "../utils/stateCompression";
 import { findRecentState, getRecentState, updateRecentStates } from "./state/localstorage";
 import Worksheet from "./Worksheet";
 import { getSerializedSelector } from "./state/selectors/SerializeSelector";
-import { generateUUID } from "@/utils/uuid";
+import { generateUUID } from "../utils/uuid";
 
 
 const Page: React.FC = () => {
@@ -61,9 +61,9 @@ const Page: React.FC = () => {
   //   const handleHashChange = () => {
   //     setCurrentHash(() => window.location.hash);
   //   };
-    
+
   //   window.addEventListener('hashchange', handleHashChange);
-    
+
   //   return () => {
   //     window.removeEventListener('hashchange', handleHashChange);
   //   };
