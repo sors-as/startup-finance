@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useEffect, useRef, useState } from "react";
 import { useStore } from "zustand";
 
@@ -55,19 +53,6 @@ const Page: React.FC = () => {
     updateRecentStates(newId, newState);
     window.location.hash = compressState(newState)
   };
-
-  // For now, hash state is read only
-  // useEffect(() => {
-  //   const handleHashChange = () => {
-  //     setCurrentHash(() => window.location.hash);
-  //   };
-
-  //   window.addEventListener('hashchange', handleHashChange);
-
-  //   return () => {
-  //     window.removeEventListener('hashchange', handleHashChange);
-  //   };
-  // }, []);
 
   // Needed to solve closure issue of window event listener with state
   useEffect(() => {
