@@ -1,2 +1,5 @@
-// src/index.tsx
-export { default } from './app/cap-table/Page'
+// React Components
+export { default as CapTablePage } from './app/cap-table/Page';
+
+// Library Functions
+export * from './library';

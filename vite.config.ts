@@ -17,9 +17,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'), // Your library's entry point,
-      name: 'CapTableWorksheet',
+      name: 'StartupFinance',
       formats: ['es', 'umd'],
-      fileName: (format) => `cap-table-worksheet.${format}.js`
+      fileName: (format) => `startup-finance.${format}.js`
     },
     rollupOptions: {
       external: ['react', 'react-dom'],
