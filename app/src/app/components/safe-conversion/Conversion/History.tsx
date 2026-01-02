@@ -95,9 +95,10 @@ const History: React.FC<HistoryProps> = ({ currentObjectId }) => {
         className="w-28 bg-gray-500 hover:bg-gray-600 text-white dark:text-white cursor-pointer"
         onClick={() => setShowModal(true)}
       >
-        <span>
-          {t('history.title')}
-          <FaClock className="inline ml-2" width={20} />
+        <span className="flex flex-col items-center leading-tight">
+          <span className="text-xs">{t('history.titleLine1')}</span>
+          <span className="text-xs">{t('history.titleLine2')}</span>
+          <FaClock className="mt-1" width={16} />
         </span>
       </Button>
 

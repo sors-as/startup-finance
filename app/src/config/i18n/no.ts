@@ -33,8 +33,8 @@ export const translations = {
   
   // Shareholders
   'shareholder.name': 'Aksjonær',
-  'shareholder.shares': 'Aksjer',
-  'shareholder.ownership': 'Eierandel',
+  'shareholder.shares': 'aksjer',
+  'shareholder.ownership': 'eierandel',
   'shareholder.type': 'Type',
   'shareholder.add': 'Legg til aksjonær',
   'shareholder.common': 'Ordinære',
@@ -49,9 +49,9 @@ export const translations = {
   'finance.investment': 'Investering',
   'finance.valuation': 'Verdsettelse',
   'finance.pps': 'Pris per aksje',
-  'finance.shares': 'Aksjer',
+  'finance.shares': 'aksjer',
   'finance.dilution': 'Utvanning',
-  'finance.ownership': 'Eierandel',
+  'finance.ownership': 'eierandel',
   'finance.targetOptions': 'Målsatt opsjonsprogram',
   
   // Series/Rounds
@@ -97,7 +97,9 @@ export const translations = {
   'share.cloneDescription': 'Opprett din egen redigerbare kopi av dette regnearket. Alle data vil bli duplisert.',
   
   // History
-  'history.title': 'Nylig brukte regneark',
+  'history.title': 'Siste Oppsett',
+  'history.titleLine1': 'Siste',
+  'history.titleLine2': 'Oppsett',
   'history.empty': 'Ingen nylig brukte regneark',
   'history.clear': 'Tøm historikk',
   'history.search': 'Søk i regneark...',
@@ -137,7 +139,7 @@ export const translations = {
   // Cap table sections
   'capTable.existing': 'Eksisterende Cap Table',
   'capTable.safes': 'SAFE-investorer',
-  'capTable.conversion': 'Prisrunde-konvertering',
+  'capTable.conversion': 'Priset runde-konvertering',
   'capTable.addSafe': 'Legg til SAFE',
   'capTable.targetOptionsPool': 'Målsatt opsjonsprogram %',
   'capTable.preMoney': 'Pre-money verdsettelse',
@@ -147,10 +149,10 @@ export const translations = {
   'capTable.newShares': 'Nye aksjer utstedt',
   'capTable.totalShares': 'Totalt antall aksjer',
   'capTable.roundDilution': 'Total runde-utvanning',
-  'capTable.beforePricedRound': 'Cap Table før prisrunde',
-  'capTable.beforePricedRoundTooltip': 'Inntil en prisrunde er registrert, er dette bare et estimat basert på antakelsen om at alle SAFE-er konverteres til deres nåværende tak eller, hvis det ikke er noe tak, det maksimale taket for alle SAFE-er',
-  'capTable.removePricedRound': 'Fjern prisrunde',
-  'capTable.addPricedRound': 'Legg til prisrunde',
+  'capTable.beforePricedRound': 'Cap Table før priset runde',
+  'capTable.beforePricedRoundTooltip': 'Inntil en priset runde er registrert, er dette bare et estimat basert på antakelsen om at alle SAFE-er konverteres til deres nåværende tak eller, hvis det ikke er noe tak, det maksimale taket for alle SAFE-er',
+  'capTable.removePricedRound': 'Fjern priset runde',
+  'capTable.addPricedRound': 'Legg til priset runde',
   'capTable.newRound': 'Ny runde',
   'capTable.roundDetails': 'Rundedetaljer',
   'capTable.premoney': 'Pre-money verdsettelse',
@@ -158,7 +160,7 @@ export const translations = {
   'capTable.targetOptionsPoolLabel': 'Målsatt opsjonsprogram',
   'capTable.additionalOptions': 'Tilleggsopsjoner',
   'capTable.seriesInvestors': 'Serie-investorer',
-  'capTable.afterPricedRound': 'Cap Table etter prisrunde',
+  'capTable.afterPricedRound': 'Cap Table etter priset runde',
   'capTable.investment': 'Investering',
   
   // Labels
@@ -167,8 +169,8 @@ export const translations = {
   'label.amount': 'Beløp',
   'label.valCap': 'Verdsettelsestak',
   'label.discount': 'Rabatt',
-  'label.shares': 'Aksjer',
-  'label.ownership': 'Eierandel',
+  'label.shares': 'aksjer',
+  'label.ownership': 'eierandel',
   'label.newOwnership': 'Ny eierandel',
   'label.dilution': 'Utvanning',
 } as const;

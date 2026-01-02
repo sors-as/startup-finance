@@ -98,6 +98,8 @@ export const translations = {
   
   // History
   'history.title': 'Recent Worksheets',
+  'history.titleLine1': 'Recent',
+  'history.titleLine2': 'Worksheets',
   'history.empty': 'No recent worksheets',
   'history.clear': 'Clear History',
   'history.search': 'Search worksheets...',
