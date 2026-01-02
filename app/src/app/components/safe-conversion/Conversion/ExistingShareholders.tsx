@@ -164,6 +164,7 @@ const ExisingShareholderList: React.FC<RowsProps<ExistingShareholderProps>> = ({
   onAddRow,
   isReadOnly = false,
 }) => {
+  const { t } = useTranslation();
   // Don't include the UnusedOptionsRow in the editable list since this is edited in a separate field
   const existingShareholders = rows.filter(
     (row) => ["UnusedOptionsPool", "IssuedOptions"].indexOf(row.id) === -1
