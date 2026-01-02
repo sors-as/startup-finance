@@ -84,6 +84,17 @@ export const translations = {
   'share.copied': 'Kopiert til utklippstavle!',
   'share.description.readOnly': 'Andre kan se, men ikke redigere',
   'share.description.fullAccess': 'Andre kan se og redigere',
+  'share.fullAccessTitle': 'Full tilgang',
+  'share.fullAccessDescription': 'Mottakere kan se og redigere dette regnearket. Endringer synkroniseres i sanntid.',
+  'share.readOnlyTitle': 'Kun lesing',
+  'share.readOnlyDescription': 'Mottakere kan se regnearket, men ikke gjøre endringer. De kan klone det for å lage sin egen redigerbare kopi.',
+  'share.readOnlyAccessTitle': 'Kun lesetilgang',
+  'share.readOnlyModeDescription': 'Du ser dette regnearket i kun-lesing-modus. Du kan dele denne lenken eller klone det for å lage din egen redigerbare kopi.',
+  'share.copiedButton': 'Kopiert!',
+  'share.copyButton': 'Kopier',
+  'share.cloneToEdit': 'Klon for å redigere',
+  'share.creatingCopy': 'Oppretter din kopi...',
+  'share.cloneDescription': 'Opprett din egen redigerbare kopi av dette regnearket. Alle data vil bli duplisert.',
   
   // History
   'history.title': 'Nylig brukte regneark',

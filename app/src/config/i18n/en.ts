@@ -84,6 +84,17 @@ export const translations = {
   'share.copied': 'Copied to clipboard!',
   'share.description.readOnly': 'Others can view but not edit',
   'share.description.fullAccess': 'Others can view and edit',
+  'share.fullAccessTitle': 'Full Access',
+  'share.fullAccessDescription': 'Recipients can view and edit this worksheet. Changes sync in real-time.',
+  'share.readOnlyTitle': 'Read Only',
+  'share.readOnlyDescription': 'Recipients can view the worksheet but cannot make changes. They can clone it to create their own editable copy.',
+  'share.readOnlyAccessTitle': 'Read Only Access',
+  'share.readOnlyModeDescription': 'You\'re viewing this worksheet in read-only mode. You can share this link or clone it to create your own editable copy.',
+  'share.copiedButton': 'Copied!',
+  'share.copyButton': 'Copy',
+  'share.cloneToEdit': 'Clone to Edit',
+  'share.creatingCopy': 'Creating your copy...',
+  'share.cloneDescription': 'Create your own editable copy of this worksheet. All data will be duplicated.',
   
   // History
   'history.title': 'Recent Worksheets',

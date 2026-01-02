@@ -2,6 +2,7 @@ import { copyTextToClipboard } from "@/utils/clipboard";
 import { useRef, useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { FaBookmark, FaRegBookmark, FaLock, FaLockOpen, FaCopy, FaClone } from "react-icons/fa6";
+import { useTranslation } from "@config/i18n";
 
 interface ShareProps {
   readOnlyUrl: string;
@@ -18,6 +19,7 @@ const Share: React.FC<ShareProps> = ({
   onClone,
   isCloning = false 
 }) => {
+  const { t } = useTranslation();
   const [copiedUrl, setCopiedUrl] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
 
@@ -44,7 +46,7 @@ const Share: React.FC<ShareProps> = ({
     if (isUpdatedRef.current) {
       return (
         <span>
-          Share
+          {t('action.share')}
           <span className="inline">
             <FaBookmark className="inline ml-2" width={20} />
           </span>
@@ -53,7 +55,7 @@ const Share: React.FC<ShareProps> = ({
     }
     return (
       <span>
-        Share
+        {t('action.share')}
         <span className="inline">
           <FaRegBookmark className="inline ml-2" width={20} />
         </span>
@@ -114,7 +116,7 @@ const Share: React.FC<ShareProps> = ({
           <div className="relative z-10 bg-white dark:bg-gray-900 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-2xl sm:w-full mx-4 rounded-lg">
             <div className="px-6 pt-6 pb-4">
               <h3 className="text-xl leading-6 font-medium text-gray-900 dark:text-gray-100 mb-6">
-                Share this worksheet
+                {t('share.title')}
               </h3>
 
               {hasEditAccess ? (
@@ -125,11 +127,11 @@ const Share: React.FC<ShareProps> = ({
                     <div className="flex items-center mb-3">
                       <FaLockOpen className="text-green-600 dark:text-green-400 mr-2" />
                       <h4 className="text-lg font-semibold text-green-800 dark:text-green-200">
-                        Full Access
+                        {t('share.fullAccessTitle')}
                       </h4>
                     </div>
                     <p className="text-sm text-green-700 dark:text-green-300 mb-3">
-                      Recipients can view and edit this worksheet. Changes sync in real-time.
+                      {t('share.fullAccessDescription')}
                     </p>
                     <div className="flex gap-2">
                       <input
@@ -145,11 +147,11 @@ const Share: React.FC<ShareProps> = ({
                         onClick={() => onClickCopy(fullAccessUrl || "")}
                       >
                         {copiedUrl === fullAccessUrl ? (
-                          "Copied!"
+                          t('share.copiedButton')
                         ) : (
                           <>
                             <FaCopy className="mr-1" size={14} />
-                            Copy
+                            {t('share.copyButton')}
                           </>
                         )}
                       </Button>
@@ -161,11 +163,11 @@ const Share: React.FC<ShareProps> = ({
                     <div className="flex items-center mb-3">
                       <FaLock className="text-blue-600 dark:text-blue-400 mr-2" />
                       <h4 className="text-lg font-semibold text-blue-800 dark:text-blue-200">
-                        Read Only
+                        {t('share.readOnlyTitle')}
                       </h4>
                     </div>
                     <p className="text-sm text-blue-700 dark:text-blue-300 mb-3">
-                      Recipients can view the worksheet but cannot make changes. They can clone it to create their own editable copy.
+                      {t('share.readOnlyDescription')}
                     </p>
                     <div className="flex gap-2">
                       <input
@@ -181,11 +183,11 @@ const Share: React.FC<ShareProps> = ({
                         onClick={() => onClickCopy(readOnlyUrl)}
                       >
                         {copiedUrl === readOnlyUrl ? (
-                          "Copied!"
+                          t('share.copiedButton')
                         ) : (
                           <>
                             <FaCopy className="mr-1" size={14} />
-                            Copy
+                            {t('share.copyButton')}
                           </>
                         )}
                       </Button>
@@ -199,11 +201,11 @@ const Share: React.FC<ShareProps> = ({
                     <div className="flex items-center mb-3">
                       <FaLock className="text-blue-600 dark:text-blue-400 mr-2" />
                       <h4 className="text-lg font-semibold text-blue-800 dark:text-blue-200">
-                        Read Only Access
+                        {t('share.readOnlyAccessTitle')}
                       </h4>
                     </div>
                     <p className="text-sm text-blue-700 dark:text-blue-300 mb-3">
-                      You're viewing this worksheet in read-only mode. You can share this link or clone it to create your own editable copy.
+                      {t('share.readOnlyModeDescription')}
                     </p>
                     <div className="flex gap-2 mb-4">
                       <input
@@ -219,11 +221,11 @@ const Share: React.FC<ShareProps> = ({
                         onClick={() => onClickCopy(readOnlyUrl)}
                       >
                         {copiedUrl === readOnlyUrl ? (
-                          "Copied!"
+                          t('share.copiedButton')
                         ) : (
                           <>
                             <FaCopy className="mr-1" size={14} />
-                            Copy
+                            {t('share.copyButton')}
                           </>
                         )}
                       </Button>
@@ -240,17 +242,17 @@ const Share: React.FC<ShareProps> = ({
                         {isCloning ? (
                           <>
                             <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                            Creating your copy...
+                            {t('share.creatingCopy')}
                           </>
                         ) : (
                           <>
                             <FaClone className="mr-2" size={16} />
-                            Clone to Edit
+                            {t('share.cloneToEdit')}
                           </>
                         )}
                       </Button>
                       <p className="text-xs text-blue-600 dark:text-blue-400 mt-2 text-center">
-                        This will create a new worksheet that you can edit
+                        {t('share.cloneDescription')}
                       </p>
                     </div>
                   </div>
@@ -265,7 +267,7 @@ const Share: React.FC<ShareProps> = ({
                 className="px-6"
                 onClick={() => setShowModal(false)}
               >
-                Close
+                {t('action.close')}
               </Button>
             </div>
           </div>
