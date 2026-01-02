@@ -1,0 +1,146 @@
+export const translations = {
+  // Page titles and headers
+  'page.title': 'Cap Table Kalkulator',
+  'page.breadcrumb.home': 'Verktøy',
+  'page.breadcrumb.current': 'Finanskalkulator',
+  
+  // Actions and buttons
+  'action.new': 'Ny',
+  'action.share': 'Del',
+  'action.clone': 'Kopier',
+  'action.save': 'Lagre',
+  'action.cancel': 'Avbryt',
+  'action.delete': 'Slett',
+  'action.edit': 'Rediger',
+  'action.add': 'Legg til',
+  'action.remove': 'Fjern',
+  'action.clear': 'Tøm',
+  'action.close': 'Lukk',
+  'action.copy': 'Kopier',
+  'action.download': 'Last ned',
+  'action.createNew': 'Opprett ny',
+  
+  // Worksheet
+  'worksheet.name.label': 'Navn på regneark',
+  'worksheet.name.placeholder': 'Mitt Selskap Cap Table',
+  'worksheet.saving': 'Lagrer...',
+  'worksheet.saved': 'Lagret',
+  'worksheet.readOnly': 'Kun lesing',
+  'worksheet.fullAccess': 'Full tilgang',
+  'worksheet.untitled': 'Uten navn',
+  'worksheet.editName': 'Rediger navn på regneark',
+  'worksheet.enterName': 'Skriv inn navn på regneark...',
+  
+  // Shareholders
+  'shareholder.name': 'Aksjonær',
+  'shareholder.shares': 'Aksjer',
+  'shareholder.ownership': 'Eierandel',
+  'shareholder.type': 'Type',
+  'shareholder.add': 'Legg til aksjonær',
+  'shareholder.common': 'Ordinære',
+  'shareholder.preferred': 'Preferanse',
+  'shareholder.options': 'Opsjoner',
+  'shareholder.issuedOptions': 'Utstedte opsjoner',
+  'shareholder.unusedPool': 'Ubrukte opsjoner',
+  
+  // Financial terms
+  'finance.preMoney': 'Pre-money verdsettelse',
+  'finance.postMoney': 'Post-money verdsettelse',
+  'finance.investment': 'Investering',
+  'finance.valuation': 'Verdsettelse',
+  'finance.pps': 'Pris per aksje',
+  'finance.shares': 'Aksjer',
+  'finance.dilution': 'Utvanning',
+  'finance.ownership': 'Eierandel',
+  'finance.targetOptions': 'Målsatt opsjonsprogram',
+  
+  // Series/Rounds
+  'series.name': 'Emisjonsnavn',
+  'series.add': 'Legg til emisjon',
+  'series.safe': 'SAFE',
+  'series.seriesA': 'Serie A',
+  'series.seriesB': 'Serie B',
+  'series.seed': 'Såkorn',
+  
+  // Conversion
+  'conversion.title': 'SAFE-konvertering',
+  'conversion.valCap': 'Verdsettelsestak',
+  'conversion.discount': 'Rabatt',
+  'conversion.amount': 'Beløp',
+  
+  // Status and messages
+  'status.connecting': 'Kobler til...',
+  'status.connected': 'Tilkoblet',
+  'status.disconnected': 'Frakoblet',
+  'status.error': 'Feil',
+  'status.loading': 'Laster...',
+  'status.autoSave': 'Auto-lagring aktivert',
+  'status.connectionError': 'Tilkoblingsfeil',
+  
+  // Sharing
+  'share.title': 'Del regneark',
+  'share.readOnly': 'Lenke for kun lesing',
+  'share.fullAccess': 'Lenke med full tilgang',
+  'share.copied': 'Kopiert til utklippstavle!',
+  'share.description.readOnly': 'Andre kan se, men ikke redigere',
+  'share.description.fullAccess': 'Andre kan se og redigere',
+  
+  // History
+  'history.title': 'Nylig brukte regneark',
+  'history.empty': 'Ingen nylig brukte regneark',
+  'history.clear': 'Tøm historikk',
+  'history.search': 'Søk i regneark...',
+  'history.lastAccessed': 'Sist brukt',
+  'history.clearConfirm': 'Er du sikker på at du vil tømme all historikk?',
+  'history.clearAll': 'Tøm all historikk',
+  'history.keepHistory': 'Behold historikk',
+  
+  // Tooltips and help
+  'tooltip.preMoney': 'Selskapets verdi før ny investering',
+  'tooltip.postMoney': 'Selskapets verdi etter ny investering',
+  'tooltip.pps': 'Pris per aksje i denne runden',
+  'tooltip.dilution': 'Reduksjon i eierandel i prosent',
+  'tooltip.optionsPool': 'Reserverte aksjer for ansattes aksjeopsjoner',
+  'tooltip.unusedOptionsPool': 'Reserverte aksjer som ennå ikke er tildelt som opsjonsprogrammer til teammedlemmer.',
+  'tooltip.unusedOptionsPoolExample': '[For eksempel, hvis du har et opsjonsprogram med 150 000 reserverte aksjer og deretter tildelte 50 000 opsjoner til teammedlemmer, ville den uutstedte opsjonspoolen din være 100 000.]',
+  'tooltip.issuedOptions': 'Opsjoner eller aksjer allerede utstedt til andre ansatte, rådgivere eller aksjonærer i selskapet.',
+  
+  // Errors
+  'error.invalidNumber': 'Vennligst oppgi et gyldig tall',
+  'error.required': 'Dette feltet er påkrevd',
+  'error.saveFailed': 'Kunne ikke lagre regneark',
+  'error.loadFailed': 'Kunne ikke laste regneark',
+  
+  // Time formats
+  'time.justNow': 'Akkurat nå',
+  'time.minutesAgo': 'minutter siden',
+  'time.hoursAgo': 'timer siden',
+  'time.daysAgo': 'dager siden',
+  'time.weeksAgo': 'uker siden',
+  'time.monthsAgo': 'måneder siden',
+  
+  // Cap table sections
+  'capTable.existing': 'Eksisterende Cap Table',
+  'capTable.safes': 'SAFE-kontrakter',
+  'capTable.conversion': 'Prisrunde-konvertering',
+  'capTable.addSafe': 'Legg til SAFE',
+  'capTable.targetOptionsPool': 'Målsatt opsjonsprogram %',
+  'capTable.preMoney': 'Pre-money verdsettelse',
+  'capTable.postMoney': 'Post-money verdsettelse',
+  'capTable.totalInvestment': 'Total serie-investering',
+  'capTable.pps': 'Pris per aksje',
+  'capTable.newShares': 'Nye aksjer utstedt',
+  'capTable.totalShares': 'Totalt antall aksjer',
+  'capTable.roundDilution': 'Total runde-utvanning',
+  
+  // Labels
+  'label.name': 'Navn',
+  'label.type': 'Type',
+  'label.amount': 'Beløp',
+  'label.valCap': 'Verdsettelsestak',
+  'label.discount': 'Rabatt',
+  'label.shares': 'Aksjer',
+  'label.ownership': 'Eierandel',
+  'label.newOwnership': 'Ny eierandel',
+  'label.dilution': 'Utvanning',
+} as const;
