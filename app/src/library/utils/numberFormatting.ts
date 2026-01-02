@@ -45,3 +45,38 @@ export const shortenedUSD = (value: number | string) => {
     return "$" + value.toString();
   }
 };
+
+export const formatNOKWithCommas = (value: number | string) => {
+  if (typeof value === "string") {
+    value = stringToNumber(value);
+  }
+  const maximumFractionDigits = value < 1000 ? 2 : 0;
+  return value.toLocaleString("nb-NO", {
+    style: "currency",
+    currency: "NOK",
+    maximumFractionDigits,
+  });
+};
+
+export const formatNumberWithCommasNO = (value: number | string) => {
+  if (typeof value === "string") {
+    value = stringToNumber(value);
+  }
+  return value.toLocaleString("nb-NO", {
+    style: "decimal",
+  });
+};
+
+export const shortenedNOK = (value: number | string) => {
+  if (typeof value === "string") {
+    value = stringToNumber(value);
+  }
+
+  if (value >= 1_000_000) {
+    return "kr " + (value / 1_000_000).toFixed(1) + "M";
+  } else if (value >= 1_000) {
+    return "kr " + (value / 1_000).toFixed(1) + "K";
+  } else {
+    return "kr " + value.toString();
+  }
+};

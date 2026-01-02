@@ -25,6 +25,7 @@
     "paths": {
       "@/*": ["./src/app/*"],
       "@library/*": ["./src/library/*"],
+      "@config/*": ["./src/config/*"]
     },
   },
   "include": ["src"]

@@ -4,12 +4,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        nt84blue: "#3d4CE0",
-        nt84bluedarker: "#2031c5",
-        nt84lightblue: "#BFD3ED",
-        nt84lighterblue: "#ebf1f9",
-        nt84orange: "#EB6649",
-        nt84orangedarker: "#C5543B",
+        // SORS brand colors
+        'sors-primary': '#0066CC',
+        'sors-primary-dark': '#004C99',
+        'sors-secondary': '#00A86B',
+        'sors-accent': '#FF6B35',
+        'sors-light-blue': '#E6F2FF',
+        'sors-lighter-blue': '#F5F9FF',
+        
+        // Keep backward compatibility - map old names to SORS colors
+        nt84blue: "#0066CC",
+        nt84bluedarker: "#004C99",
+        nt84lightblue: "#E6F2FF",
+        nt84lighterblue: "#F5F9FF",
+        nt84orange: "#FF6B35",
+        nt84orangedarker: "#CC5629",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
