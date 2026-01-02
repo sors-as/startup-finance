@@ -156,7 +156,7 @@ const History: React.FC<HistoryProps> = ({ currentObjectId }) => {
                     {t('history.empty')}
                   </p>
                   <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">
-                    {t('history.lastAccessed')}
+                    {t('history.recentWorksheets')}
                   </p>
                 </div>
               ) : (
