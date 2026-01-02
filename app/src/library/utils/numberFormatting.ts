@@ -5,9 +5,11 @@ export const stringToNumber = (value: string | number): number => {
     // Remove anything that's not a digit or a period or negative sign
     const cleanedValue = value.replace(/[^-\d.]/g, "");
     // if it has a period, parseFloat, otherwise parseInt
-    return cleanedValue.includes(".")
+    const result = cleanedValue.includes(".")
       ? parseFloat(cleanedValue)
       : parseInt(cleanedValue, 10);
+    // Return 0 if the result is NaN (e.g., empty string or invalid input)
+    return isNaN(result) ? 0 : result;
   }
 };
 

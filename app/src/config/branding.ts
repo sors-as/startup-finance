@@ -8,6 +8,7 @@ export const BRANDING = {
   website: "https://sors.no",
   docsUrl: "https://sors.no/hjelp",
   contactEmail: "kontakt@sors.no",
+  githubUrl: "https://github.com/1984vc/startup-finance",
   
   // Visual branding
   logoPath: "/sors-logo.svg", // To be added later

@@ -38,6 +38,8 @@ After changing colors in `branding.ts`, also update:
 1. `app/tailwind.config.js` - Tailwind color classes
 2. `app/src/app/index.css` - CSS custom properties
 
+**Note:** The codebase uses both `sors-*` and `nt84*` color class names. The `nt84*` names are maintained for backward compatibility and are mapped to SORS colors. Both naming conventions can be used interchangeably.
+
 ## Testing Changes
 
 ```bash

@@ -119,7 +119,7 @@ const Page: React.FC = () => {
               En åpen kildekode-kalkulator for å hjelpe grunnleggere med å modellere 
               SAFE-avtaler og finansieringsrunder. Verktøyet er tilgjengelig på{" "}
               <a
-                href="https://github.com/1984vc/startup-finance"
+                href={BRANDING.githubUrl}
                 target="_blank"
                 rel="noopener"
                 className="text-nt84orange hover:text-nt84orangedarker underline font-medium"
