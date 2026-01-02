@@ -118,6 +118,7 @@ export const translations = {
   'tooltip.unusedOptionsPool': 'Reserverte aksjer som ennå ikke er tildelt som opsjonsprogrammer til teammedlemmer.',
   'tooltip.unusedOptionsPoolExample': '[For eksempel, hvis du har et opsjonsprogram med 150 000 reserverte aksjer og deretter tildelte 50 000 opsjoner til teammedlemmer, ville den uutstedte opsjonspoolen din være 100 000.]',
   'tooltip.issuedOptions': 'Opsjoner eller aksjer allerede utstedt til andre ansatte, rådgivere eller aksjonærer i selskapet.',
+  'tooltip.discount': 'Rabatt til prisen på neste runde når tilgjengelig (vanligvis 0%-25%). Merk at den faktiske Post Money Safe bruker en rabattrate som er (1 - Rabatt). Så hvis Safe har en rabattrate på 80%, er rabatten 20% og du bør skrive inn 20%',
   
   // Errors
   'error.invalidNumber': 'Vennligst oppgi et gyldig tall',

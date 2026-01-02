@@ -118,6 +118,7 @@ export const translations = {
   'tooltip.unusedOptionsPool': 'Reserved shares that have yet to be assigned as option grants for team members.',
   'tooltip.unusedOptionsPoolExample': '[For example, if you have an option plan with 150,000 reserved shares and then granted 50,000 options to team members, your Unissued Option pool would be 100,000.]',
   'tooltip.issuedOptions': 'Options or shares already issued to other employees, advisors, or shareholders in the company.',
+  'tooltip.discount': 'Discount to the price of the next round when available (typically 0%-25%). Note that the actual Post Money Safe uses a Discount Rate which is (1 - Discount). So if the Safe has a Discount Rate of 80% then the Discount is 20% and you should enter 20%',
   
   // Errors
   'error.invalidNumber': 'Please enter a valid number',
