@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { RowsProps } from "./PropTypes";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { SeriesCapTableRow } from "@library/cap-table/types";
+import { useTranslation } from "@config/i18n";
 
 export type SeriesProps = SeriesCapTableRow & {
   id: string;
@@ -117,6 +118,7 @@ const SeriesInvestorList: React.FC<RowsProps<SeriesProps>> = ({
   onAddRow,
   isReadOnly = false,
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="w-full">
       {rows.map((note, idx) => (
@@ -135,7 +137,7 @@ const SeriesInvestorList: React.FC<RowsProps<SeriesProps>> = ({
             onClick={onAddRow}
             className="w-full bg-nt84blue hover:bg-nt84bluedarker dark:text-white"
           >
-            + Add another Series Investor
+            + {t('series.add')}
           </Button>
         </div>
       )}

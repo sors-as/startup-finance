@@ -8,6 +8,7 @@ import { FaRegTrashCan, FaBars } from "react-icons/fa6";
 import PercentNote from "./PercentNote";
 import { SafeCapTableRow } from "@library/cap-table/types";
 import TooltipComponent from "@/components/tooltip/Tooltip";
+import { useTranslation } from "@config/i18n";
 
 export type SAFEProps = SafeCapTableRow & {
   id: string;
@@ -41,6 +42,7 @@ const SAFEInputRow: React.FC<SAFEInputRowProps> = ({
   onDrop,
   isReadOnly = false,
 }) => {
+  const { t } = useTranslation();
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -129,7 +131,7 @@ const SAFEInputRow: React.FC<SAFEInputRowProps> = ({
                 autoComplete="off"
                 value={data.name}
                 onChange={handleInputChange}
-                placeholder="Name"
+                placeholder={t('label.name')}
                 className="w-full bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
               />
             )}
@@ -137,7 +139,7 @@ const SAFEInputRow: React.FC<SAFEInputRowProps> = ({
         </div>
         <div className="mb-3 md:mb-0 md:w-[16%]">
           <div className="text-gray-500 dark:text-gray-400 mb-1">
-            Investment
+            {t('capTable.investment')}
           </div>
           {data.disabledFields?.includes("investment") || isReadOnly ? (
             <div className="px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded border border-gray-200 dark:border-gray-600">
@@ -149,7 +151,7 @@ const SAFEInputRow: React.FC<SAFEInputRowProps> = ({
               name="investment"
               value={data.investment}
               onValueChange={onValueChange}
-              placeholder="Investment"
+              placeholder={t('capTable.investment')}
               autoComplete="off"
               className="w-full bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
               prefix="$"
@@ -160,7 +162,7 @@ const SAFEInputRow: React.FC<SAFEInputRowProps> = ({
         </div>
 
         <div className="mb-3 md:mb-0 md:w-[16%]">
-          <div className="text-gray-500 dark:text-gray-400 mb-1">Cap</div>
+          <div className="text-gray-500 dark:text-gray-400 mb-1">{t('label.valCap')}</div>
           {data.disabledFields?.includes("cap") || isReadOnly ? (
             <div className="px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded border border-gray-200 dark:border-gray-600">
               ${formatNumberWithCommas(Math.round(data.cap ?? 0))}
@@ -171,7 +173,7 @@ const SAFEInputRow: React.FC<SAFEInputRowProps> = ({
               name="cap"
               value={data.cap}
               onValueChange={onValueChange}
-              placeholder="Valuation Cap"
+              placeholder={t('label.valCap')}
               autoComplete="off"
               className="w-full bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
               prefix="$"
@@ -183,8 +185,8 @@ const SAFEInputRow: React.FC<SAFEInputRowProps> = ({
         </div>
         <div className="mb-3 md:mb-0 md:w-[10%]">
           <div className="text-gray-500 dark:text-gray-400 mb-1">
-            <TooltipComponent content="Discount to the price of the next round when available (typically 0%-25%). Note that the actual Post Money Safe uses a Discount Rate which is (1 - Discount). So if the Safe has a Discount Rate of 80% then the Discount is 20% and you should enter 20%">
-              Discount<sup>?</sup>
+            <TooltipComponent content={t('tooltip.discount')}>
+              {t('label.discount')}<sup>?</sup>
             </TooltipComponent>
           </div>
           {data.disabledFields?.includes("discount") || isReadOnly ? (
@@ -197,7 +199,7 @@ const SAFEInputRow: React.FC<SAFEInputRowProps> = ({
               name="discount"
               value={data.discount ?? "0"}
               onValueChange={onValueChange}
-              placeholder="Discount %"
+              placeholder={t('label.discount')}
               className="w-full bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
               autoComplete="off"
               prefix=""
@@ -259,6 +261,7 @@ const SafeNoteList: React.FC<RowsProps<SAFEProps>> = ({
   onMoveRow,
   isReadOnly = false,
 }) => {
+  const { t } = useTranslation();
   const [dragStartId, setDragStartId] = useState<string | null>(null);
   const [dragOverId, setDragOverId] = useState<string | null>(null);
 
@@ -321,7 +324,7 @@ const SafeNoteList: React.FC<RowsProps<SAFEProps>> = ({
             onClick={onAddRow}
             className="w-full bg-nt84blue hover:bg-nt84bluedarker dark:text-white"
           >
-            + Add another SAFE
+            + {t('capTable.addSafe')}
           </Button>
         </div>
       )}
