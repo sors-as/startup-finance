@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import WorksheetContainer from "./WorksheetContainer";
+import { BRANDING } from '@config/branding';
+import { Footer } from '@/components/Footer';
 
 const Page: React.FC = () => {
   // Dark mode state
@@ -69,14 +71,14 @@ const Page: React.FC = () => {
           <div className="text-sm text-gray-500 dark:text-gray-400 mb-2">
             <a
               className="hover:text-nt84orange"
-              href="https://1984.vc/docs/founders-handbook"
+              href={BRANDING.docsUrl}
             >
-              Founders Handbook
+              {BRANDING.content.breadcrumbHome}
             </a>{" "}
-            &gt; <span>Cap Table Worksheet</span>
+            &gt; <span>{BRANDING.content.breadcrumbCurrent}</span>
           </div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-            1984 Cap Table Worksheet
+            {BRANDING.siteName}
           </h1>
         </div>
 
@@ -109,54 +111,38 @@ const Page: React.FC = () => {
 
         <div className="w-full max-w-5xl px-4 mt-24 border-t pt-8 border-gray-300 dark:border-gray-500">
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-            About the Cap Table Worksheet
+            Om Cap Table Kalkulatoren
           </h1>
 
           <div className="space-y-6 text-gray-700 dark:text-gray-300">
             <p className="leading-relaxed">
-              At 1984 we believe founders should be able to quickly understand
-              the decisions they make with regards to financing, particularly at
-              the earliest stages when legal support is minimal. We believe
-              SAFEs in particular should be easy to understand and model, and
-              the tools should be open source, well-tested, and easy for anyone
-              to use. Currently the best we have are either aging Excel
-              spreadsheets that get passed around, or a fairly rudimentary
-              webapp–which is why we created this project.
-            </p>
-
-            <p className="leading-relaxed">
-              The captable worksheet is an open-source tool to help
-              founders model their SAFE and priced rounds. The module is
-              available on{" "}
+              En åpen kildekode-kalkulator for å hjelpe grunnleggere med å modellere 
+              SAFE-avtaler og finansieringsrunder. Verktøyet er tilgjengelig på{" "}
               <a
-                href="https://github.com/1984vc/startup-finance"
+                href={BRANDING.githubUrl}
                 target="_blank"
                 rel="noopener"
                 className="text-nt84orange hover:text-nt84orangedarker underline font-medium"
               >
-                github
-              </a>{" "}
-              and 1984 hosts an instance at{" "}
-              <a
-                href="/docs/cap-table-worksheet"
-                className="text-nt84orange hover:text-nt84orangedarker underline font-medium"
-              >
-                https://1984.vc/docs/cap-table-worksheet
+                GitHub
               </a>
+              .
             </p>
 
             <p className="leading-relaxed pt-2 border-t border-gray-200 dark:border-gray-700">
-              We value all input! If you'd like to report bugs, provide
-              feedback, or suggest improvements, please email{" "}
+              Vi setter pris på all tilbakemelding! Hvis du ønsker å rapportere feil, 
+              gi tilbakemelding eller foreslå forbedringer, vennligst send e-post til{" "}
               <a
-                href="mailto:team@1984.vc"
+                href={`mailto:${BRANDING.contactEmail}`}
                 className="text-nt84orange hover:text-nt84orangedarker underline font-medium"
               >
-                team@1984.vc
+                {BRANDING.contactEmail}
               </a>
             </p>
           </div>
         </div>
+
+        <Footer />
       </main>
     </div>
   );
