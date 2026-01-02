@@ -94,6 +94,9 @@ export const translations = {
   'history.clearConfirm': 'Er du sikker på at du vil tømme all historikk?',
   'history.clearAll': 'Tøm all historikk',
   'history.keepHistory': 'Behold historikk',
+  'history.noMatch': 'Ingen regneark matcher søket ditt',
+  'history.current': 'Gjeldende',
+  'history.recentWorksheets': 'Dine nylig brukte regneark vil vises her',
   
   // Tooltips and help
   'tooltip.preMoney': 'Selskapets verdi før ny investering',
@@ -121,7 +124,7 @@ export const translations = {
   
   // Cap table sections
   'capTable.existing': 'Eksisterende Cap Table',
-  'capTable.safes': 'SAFE-kontrakter',
+  'capTable.safes': 'SAFE-investorer',
   'capTable.conversion': 'Prisrunde-konvertering',
   'capTable.addSafe': 'Legg til SAFE',
   'capTable.targetOptionsPool': 'Målsatt opsjonsprogram %',
@@ -132,6 +135,19 @@ export const translations = {
   'capTable.newShares': 'Nye aksjer utstedt',
   'capTable.totalShares': 'Totalt antall aksjer',
   'capTable.roundDilution': 'Total runde-utvanning',
+  'capTable.beforePricedRound': 'Cap Table før prisrunde',
+  'capTable.beforePricedRoundTooltip': 'Inntil en prisrunde er registrert, er dette bare et estimat basert på antakelsen om at alle SAFE-er konverteres til deres nåværende tak eller, hvis det ikke er noe tak, det maksimale taket for alle SAFE-er',
+  'capTable.removePricedRound': 'Fjern prisrunde',
+  'capTable.addPricedRound': 'Legg til prisrunde',
+  'capTable.newRound': 'Ny runde',
+  'capTable.roundDetails': 'Rundedetaljer',
+  'capTable.premoney': 'Pre-money verdsettelse',
+  'capTable.postMoneyValuation': 'Post-money verdsettelse',
+  'capTable.targetOptionsPoolLabel': 'Målsatt opsjonsprogram',
+  'capTable.additionalOptions': 'Tilleggsopsjoner',
+  'capTable.seriesInvestors': 'Serie-investorer',
+  'capTable.afterPricedRound': 'Cap Table etter prisrunde',
+  'capTable.investment': 'Investering',
   
   // Labels
   'label.name': 'Navn',

@@ -94,6 +94,9 @@ export const translations = {
   'history.clearConfirm': 'Are you sure you want to clear all history?',
   'history.clearAll': 'Clear All History',
   'history.keepHistory': 'Keep History',
+  'history.noMatch': 'No worksheets match your search',
+  'history.current': 'Current',
+  'history.recentWorksheets': 'Your recently accessed worksheets will appear here',
   
   // Tooltips and help
   'tooltip.preMoney': 'Company valuation before new investment',
@@ -121,7 +124,7 @@ export const translations = {
   
   // Cap table sections
   'capTable.existing': 'Existing Cap Table',
-  'capTable.safes': 'SAFEs',
+  'capTable.safes': 'SAFE Investors',
   'capTable.conversion': 'Priced Round Conversion',
   'capTable.addSafe': 'Add SAFE',
   'capTable.targetOptionsPool': 'Target Options Pool %',
@@ -132,6 +135,19 @@ export const translations = {
   'capTable.newShares': 'New Shares Issued',
   'capTable.totalShares': 'Total Shares',
   'capTable.roundDilution': 'Total Round Dilution',
+  'capTable.beforePricedRound': 'Cap Table Before Priced Round',
+  'capTable.beforePricedRoundTooltip': 'Until a priced round is entered, this is just an estimate based on the assumption that all SAFE\'s convert at their current Cap or, if uncapped, the maximum Cap of all SAFE\'s',
+  'capTable.removePricedRound': 'Remove Priced Round',
+  'capTable.addPricedRound': 'Add Priced Round',
+  'capTable.newRound': 'New Round',
+  'capTable.roundDetails': 'Round Details',
+  'capTable.premoney': 'Premoney Valuation',
+  'capTable.postMoneyValuation': 'Post Money Valuation',
+  'capTable.targetOptionsPoolLabel': 'Target Options Pool',
+  'capTable.additionalOptions': 'Additional Options',
+  'capTable.seriesInvestors': 'Series Investors',
+  'capTable.afterPricedRound': 'Cap Table After Priced Round',
+  'capTable.investment': 'Investment',
   
   // Labels
   'label.name': 'Name',

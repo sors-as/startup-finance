@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import QuestionMarkTooltipComponent from "@/components/tooltip/QuestionMarkTooltip";
 import { CommonCapTableRow } from "@library/cap-table/types";
+import { useTranslation } from "@config/i18n";
 
 export type ExistingShareholderProps = CommonCapTableRow & {
   // We need to ensure we can identify the row when updating or deleting
@@ -29,6 +30,7 @@ const ExistingShareholderRow: React.FC<ExistingShareholderRowProps> = ({
   disableNameEdit,
   isReadOnly = false,
 }) => {
+  const { t } = useTranslation();
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -56,13 +58,10 @@ const ExistingShareholderRow: React.FC<ExistingShareholderRowProps> = ({
           <QuestionMarkTooltipComponent>
             <div className="max-w-72">
               <p>
-                Reserved shares that have yet to be assigned as option grants
-                for team members.
+                {t('tooltip.unusedOptionsPool')}
               </p>
               <i>
-                [For example, if you have an option plan with 150,000 reserved
-                shares and then granted 50,000 options to team members, your
-                Unissued Option pool would be 100,000.]
+                {t('tooltip.unusedOptionsPoolExample')}
               </i>
             </div>
           </QuestionMarkTooltipComponent>
@@ -73,8 +72,7 @@ const ExistingShareholderRow: React.FC<ExistingShareholderRowProps> = ({
         <div className="inline-block text-nt84bluedarker dark:text-nt84lightblue">
           <QuestionMarkTooltipComponent>
             <div className="max-w-72">
-              Options or shares already issued to other employees, advisors, or
-              shareholders in the company.
+              {t('tooltip.issuedOptions')}
             </div>
           </QuestionMarkTooltipComponent>
         </div>
@@ -104,7 +102,7 @@ const ExistingShareholderRow: React.FC<ExistingShareholderRowProps> = ({
             </span>
           ) : (
             <div>
-              <div className="text-gray-500 dark:text-gray-400 mb-1">Name</div>
+              <div className="text-gray-500 dark:text-gray-400 mb-1">{t('label.name')}</div>
               {isReadOnly ? (
                 <div className="px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded border border-gray-200 dark:border-gray-600">
                   {data.name}
@@ -116,7 +114,7 @@ const ExistingShareholderRow: React.FC<ExistingShareholderRowProps> = ({
                   autoComplete="off"
                   value={data.name}
                   onChange={handleInputChange}
-                  placeholder="Common Shareholder Name"
+                  placeholder={t('shareholder.name')}
                   className="w-full bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
                 />
               )}
@@ -125,7 +123,7 @@ const ExistingShareholderRow: React.FC<ExistingShareholderRowProps> = ({
         </div>
 
         <div className="mb-3 md:mb-0 md:flex-1">
-          <div className="text-gray-500 dark:text-gray-400 mb-1">Shares</div>
+          <div className="text-gray-500 dark:text-gray-400 mb-1">{t('label.shares')}</div>
           {isReadOnly ? (
             <div className="px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded border border-gray-200 dark:border-gray-600">
               {data.shares?.toLocaleString() || 0}
@@ -136,7 +134,7 @@ const ExistingShareholderRow: React.FC<ExistingShareholderRowProps> = ({
               name="shares"
               value={data.shares}
               onValueChange={onValueChange}
-              placeholder="Shares"
+              placeholder={t('label.shares')}
               className="w-full bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
               prefix=""
               decimalScale={0}
@@ -148,7 +146,7 @@ const ExistingShareholderRow: React.FC<ExistingShareholderRowProps> = ({
 
         <div className="mb-3 md:mb-0 md:flex-1">
           <div className="text-gray-500 dark:text-gray-400 mb-1">
-            Ownership %
+            {t('label.ownership')} %
           </div>
           <div className="px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded">
             {(ownership * 100).toFixed(2)}%
@@ -215,7 +213,7 @@ const ExisingShareholderList: React.FC<RowsProps<ExistingShareholderProps>> = ({
             onClick={onAddRow}
             className="w-full bg-nt84blue hover:bg-nt84bluedarker dark:text-white"
           >
-            + Add another Shareholder
+            + {t('shareholder.add')}
           </Button>
         </div>
       )}

@@ -10,12 +10,14 @@ import {
   formatFullDateTime,
   type HistoryEntry 
 } from "@/services/historyService";
+import { useTranslation } from "@config/i18n";
 
 interface HistoryProps {
   currentObjectId?: string;
 }
 
 const History: React.FC<HistoryProps> = ({ currentObjectId }) => {
+  const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [filteredHistory, setFilteredHistory] = useState<HistoryEntry[]>([]);
@@ -94,7 +96,7 @@ const History: React.FC<HistoryProps> = ({ currentObjectId }) => {
         onClick={() => setShowModal(true)}
       >
         <span>
-          History
+          {t('history.title')}
           <FaClock className="inline ml-2" width={20} />
         </span>
       </Button>
@@ -110,7 +112,7 @@ const History: React.FC<HistoryProps> = ({ currentObjectId }) => {
             <div className="px-6 pt-6 pb-4">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-xl leading-6 font-medium text-gray-900 dark:text-gray-100">
-                  Worksheet History
+                  {t('history.title')}
                 </h3>
                 {history.length > 0 && (
                   <div className="flex items-center gap-2">
@@ -121,25 +123,25 @@ const History: React.FC<HistoryProps> = ({ currentObjectId }) => {
                         onClick={() => setShowClearConfirm(true)}
                         className="text-red-600 hover:text-red-700"
                       >
-                        Clear All
+                        {t('history.clear')}
                       </Button>
                     ) : (
                       <div className="flex items-center gap-2">
-                        <span className="text-sm text-red-600">Are you sure?</span>
+                        <span className="text-sm text-red-600">{t('history.clearConfirm')}</span>
                         <Button
                           variant="secondary"
                           size="sm"
                           onClick={handleClearHistory}
                           className="text-red-600 hover:text-red-700"
                         >
-                          Yes, Clear
+                          {t('history.clearAll')}
                         </Button>
                         <Button
                           variant="secondary"
                           size="sm"
                           onClick={() => setShowClearConfirm(false)}
                         >
-                          Cancel
+                          {t('history.keepHistory')}
                         </Button>
                       </div>
                     )}
@@ -151,10 +153,10 @@ const History: React.FC<HistoryProps> = ({ currentObjectId }) => {
                 <div className="text-center py-12">
                   <FaClock className="mx-auto text-gray-400 dark:text-gray-600 mb-4" size={48} />
                   <p className="text-gray-600 dark:text-gray-400">
-                    No worksheets in history yet
+                    {t('history.empty')}
                   </p>
                   <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">
-                    Your recently accessed worksheets will appear here
+                    {t('history.lastAccessed')}
                   </p>
                 </div>
               ) : (
@@ -164,7 +166,7 @@ const History: React.FC<HistoryProps> = ({ currentObjectId }) => {
                     <FaMagnifyingGlass className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                     <Input
                       type="text"
-                      placeholder="Search worksheets..."
+                      placeholder={t('history.search')}
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                       className="pl-10"
@@ -175,7 +177,7 @@ const History: React.FC<HistoryProps> = ({ currentObjectId }) => {
                   <div className="max-h-96 overflow-y-auto space-y-2">
                     {filteredHistory.length === 0 ? (
                       <p className="text-center py-8 text-gray-500 dark:text-gray-400">
-                        No worksheets match your search
+                        {t('history.noMatch')}
                       </p>
                     ) : (
                       filteredHistory.map((entry) => (
@@ -203,7 +205,7 @@ const History: React.FC<HistoryProps> = ({ currentObjectId }) => {
                                 </h4>
                                 {entry.objectId === currentObjectId && (
                                   <span className="text-xs bg-nt84orange text-white px-2 py-0.5 rounded">
-                                    Current
+                                    {t('history.current')}
                                   </span>
                                 )}
                               </div>
@@ -212,7 +214,7 @@ const History: React.FC<HistoryProps> = ({ currentObjectId }) => {
                                   {formatRelativeTime(entry.lastAccessed)}
                                 </span>
                                 <span className="text-xs">
-                                  {entry.editKey ? 'Full Access' : 'Read Only'}
+                                  {entry.editKey ? t('worksheet.fullAccess') : t('worksheet.readOnly')}
                                 </span>
                               </div>
                             </div>
