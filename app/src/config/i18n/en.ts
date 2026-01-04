@@ -173,4 +173,9 @@ export const translations = {
   'label.ownership': 'Ownership',
   'label.newOwnership': 'New Ownership',
   'label.dilution': 'Dilution',
+  
+  // Language picker
+  'language.english': 'English',
+  'language.norwegian': 'Norwegian',
+  'language.switchTo': 'Switch to',
 } as const;
