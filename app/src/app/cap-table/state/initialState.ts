@@ -52,7 +52,7 @@ export const initialState = ({
       name: `Issued Options`,
       shares: 250_000,
     },
-    // SORS 7% SAFE
+    // SORS 7% SLIP
     {
       id: getID(),
       type: CapTableRowType.Safe,
@@ -62,7 +62,7 @@ export const initialState = ({
       cap: 125_000 / 0.07,
       conversionType: "post",
     },
-    // Uncapped Antler MFN SAFE (Cap to best cap of all safes)
+    // Uncapped Antler MFN SLIP (Cap to best cap of all slips)
     {
       id: getID(),
       type: CapTableRowType.Safe,

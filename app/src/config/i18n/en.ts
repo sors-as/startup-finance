@@ -57,13 +57,13 @@ export const translations = {
   // Series/Rounds
   'series.name': 'Series Name',
   'series.add': 'Add Series',
-  'series.safe': 'SAFE',
+  'series.slip': 'SLIP',
   'series.seriesA': 'Series A',
   'series.seriesB': 'Series B',
   'series.seed': 'Seed',
   
   // Conversion
-  'conversion.title': 'SAFE Conversion',
+  'conversion.title': 'SLIP Conversion',
   'conversion.valCap': 'Valuation Cap',
   'conversion.discount': 'Discount',
   'conversion.amount': 'Amount',
@@ -120,7 +120,7 @@ export const translations = {
   'tooltip.unusedOptionsPool': 'Reserved shares that have yet to be assigned as option grants for team members.',
   'tooltip.unusedOptionsPoolExample': '[For example, if you have an option plan with 150,000 reserved shares and then granted 50,000 options to team members, your Unissued Option pool would be 100,000.]',
   'tooltip.issuedOptions': 'Options or shares already issued to other employees, advisors, or shareholders in the company.',
-  'tooltip.discount': 'Discount to the price of the next round when available (typically 0%-25%). Note that the actual Post Money Safe uses a Discount Rate which is (1 - Discount). So if the Safe has a Discount Rate of 80% then the Discount is 20% and you should enter 20%',
+  'tooltip.discount': 'Discount to the price of the next round when available (typically 0%-25%). Note that the actual Post Money SLIP uses a Discount Rate which is (1 - Discount). So if the SLIP has a Discount Rate of 80% then the Discount is 20% and you should enter 20%',
   
   // Errors
   'error.invalidNumber': 'Please enter a valid number',
@@ -138,9 +138,9 @@ export const translations = {
   
   // Cap table sections
   'capTable.existing': 'Existing Cap Table',
-  'capTable.safes': 'SAFE Investors',
+  'capTable.slips': 'SLIP Investors',
   'capTable.conversion': 'Priced Round Conversion',
-  'capTable.addSafe': 'Add SAFE',
+  'capTable.addSlip': 'Add SLIP',
   'capTable.targetOptionsPool': 'Target Options Pool %',
   'capTable.preMoney': 'Pre-Money Valuation',
   'capTable.postMoney': 'Post-Money Valuation',
@@ -150,7 +150,7 @@ export const translations = {
   'capTable.totalShares': 'Total Shares',
   'capTable.roundDilution': 'Total Round Dilution',
   'capTable.beforePricedRound': 'Cap Table Before Priced Round',
-  'capTable.beforePricedRoundTooltip': 'Until a priced round is entered, this is just an estimate based on the assumption that all SAFE\'s convert at their current Cap or, if uncapped, the maximum Cap of all SAFE\'s',
+  'capTable.beforePricedRoundTooltip': 'Until a priced round is entered, this is just an estimate based on the assumption that all SLIP\'s convert at their current Cap or, if uncapped, the maximum Cap of all SLIP\'s',
   'capTable.removePricedRound': 'Remove Priced Round',
   'capTable.addPricedRound': 'Add Priced Round',
   'capTable.newRound': 'New Round',

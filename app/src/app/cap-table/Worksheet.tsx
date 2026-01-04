@@ -259,7 +259,7 @@ const Worksheet: React.FC<WorksheetProps> = ({
           isReadOnly={isReadOnly}
         />
       </div>
-      <h1 className="text-2xl font-bold mb-12 mt-24 pl-2">2&#41; {t('capTable.safes')}</h1>
+      <h1 className="text-2xl font-bold mb-12 mt-24 pl-2">2&#41; {t('capTable.slips')}</h1>
       <div>
         <SafeNoteList
           rows={getSAFERowPropsSelector(conversionState)}

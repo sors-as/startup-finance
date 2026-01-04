@@ -57,13 +57,13 @@ export const translations = {
   // Series/Rounds
   'series.name': 'Emisjonsnavn',
   'series.add': 'Legg til emisjon',
-  'series.safe': 'SAFE',
+  'series.slip': 'SLIP',
   'series.seriesA': 'Serie A',
   'series.seriesB': 'Serie B',
   'series.seed': 'Såkorn',
   
   // Conversion
-  'conversion.title': 'SAFE-konvertering',
+  'conversion.title': 'SLIP-konvertering',
   'conversion.valCap': 'Verdsettelsestak',
   'conversion.discount': 'Rabatt',
   'conversion.amount': 'Beløp',
@@ -120,7 +120,7 @@ export const translations = {
   'tooltip.unusedOptionsPool': 'Reserverte aksjer som ennå ikke er tildelt som opsjonsprogrammer til teammedlemmer.',
   'tooltip.unusedOptionsPoolExample': '[For eksempel, hvis du har et opsjonsprogram med 150 000 reserverte aksjer og deretter tildelte 50 000 opsjoner til teammedlemmer, ville den uutstedte opsjonspoolen din være 100 000.]',
   'tooltip.issuedOptions': 'Opsjoner eller aksjer allerede utstedt til andre ansatte, rådgivere eller aksjonærer i selskapet.',
-  'tooltip.discount': 'Rabatt til prisen på neste runde når tilgjengelig (vanligvis 0%-25%). Merk at den faktiske Post Money Safe bruker en rabattrate som er (1 - Rabatt). Så hvis Safe har en rabattrate på 80%, er rabatten 20% og du bør skrive inn 20%',
+  'tooltip.discount': 'Rabatt til prisen på neste runde når tilgjengelig (vanligvis 0%-25%). Merk at den faktiske Post Money SLIP bruker en rabattrate som er (1 - Rabatt). Så hvis SLIP har en rabattrate på 80%, er rabatten 20% og du bør skrive inn 20%',
   
   // Errors
   'error.invalidNumber': 'Vennligst oppgi et gyldig tall',
@@ -138,9 +138,9 @@ export const translations = {
   
   // Cap table sections
   'capTable.existing': 'Eksisterende Cap Table',
-  'capTable.safes': 'SAFE-investorer',
+  'capTable.slips': 'SLIP-investorer',
   'capTable.conversion': 'Priset runde-konvertering',
-  'capTable.addSafe': 'Legg til SAFE',
+  'capTable.addSlip': 'Legg til SLIP',
   'capTable.targetOptionsPool': 'Målsatt opsjonsprogram %',
   'capTable.preMoney': 'Pre-money verdsettelse',
   'capTable.postMoney': 'Post-money verdsettelse',
@@ -150,7 +150,7 @@ export const translations = {
   'capTable.totalShares': 'Totalt antall aksjer',
   'capTable.roundDilution': 'Total runde-utvanning',
   'capTable.beforePricedRound': 'Cap Table før priset runde',
-  'capTable.beforePricedRoundTooltip': 'Inntil en priset runde er registrert, er dette bare et estimat basert på antakelsen om at alle SAFE-er konverteres til deres nåværende tak eller, hvis det ikke er noe tak, det maksimale taket for alle SAFE-er',
+  'capTable.beforePricedRoundTooltip': 'Inntil en priset runde er registrert, er dette bare et estimat basert på antakelsen om at alle SLIP-er konverteres til deres nåværende tak eller, hvis det ikke er noe tak, det maksimale taket for alle SLIP-er',
   'capTable.removePricedRound': 'Fjern priset runde',
   'capTable.addPricedRound': 'Legg til priset runde',
   'capTable.newRound': 'Ny runde',
