@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import WorksheetContainer from "./WorksheetContainer";
 import { BRANDING } from '@config/branding';
+import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { LanguagePicker } from '@/components/LanguagePicker';
 
@@ -65,14 +66,16 @@ const Page: React.FC = () => {
   };
 
   return (
-    <div>
-      <main className="flex min-h-screen flex-col items-center justify-between py-8">
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      
+      <main className="flex-grow flex flex-col items-center justify-between py-8">
         {/* Breadcrumb and Heading */}
         <div className="z-10 w-full max-w-5xl mb-6 px-2">
           <div className="text-sm text-gray-500 dark:text-gray-400 mb-2">
             <a
-              className="hover:text-nt84orange"
-              href={BRANDING.docsUrl}
+              className="hover:text-sors-primary dark:hover:text-sors-light-blue"
+              href={BRANDING.toolsUrl}
             >
               {BRANDING.content.breadcrumbHome}
             </a>{" "}
@@ -87,7 +90,7 @@ const Page: React.FC = () => {
         <WorksheetContainer onCreateNew={createNewState} />
 
         {/* Language picker and dark mode toggle at top right corner */}
-        <div className="absolute top-4 right-4 flex items-center gap-3">
+        <div className="absolute top-20 right-4 flex items-center gap-3">
           {/* Language Picker */}
           <LanguagePicker />
           
@@ -127,7 +130,7 @@ const Page: React.FC = () => {
                 href={BRANDING.githubUrl}
                 target="_blank"
                 rel="noopener"
-                className="text-nt84orange hover:text-nt84orangedarker underline font-medium"
+                className="text-sors-primary hover:text-sors-primary-dark underline font-medium"
               >
                 GitHub
               </a>
@@ -139,16 +142,16 @@ const Page: React.FC = () => {
               gi tilbakemelding eller foreslå forbedringer, vennligst send e-post til{" "}
               <a
                 href={`mailto:${BRANDING.contactEmail}`}
-                className="text-nt84orange hover:text-nt84orangedarker underline font-medium"
+                className="text-sors-primary hover:text-sors-primary-dark underline font-medium"
               >
                 {BRANDING.contactEmail}
               </a>
             </p>
           </div>
         </div>
-
-        <Footer />
       </main>
+
+      <Footer />
     </div>
   );
 };
