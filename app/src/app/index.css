@@ -8,9 +8,9 @@
 
   --radius: 0.625rem;
 
-  --background: oklch(1 0 0);
+  --background: #ffffff;
 
-  --foreground: oklch(0.13 0.028 261.692);
+  --foreground: #171717;
 
   --card: oklch(1 0 0);
 
@@ -73,9 +73,9 @@
 
 .dark {
 
-  --background: #111;
+  --background: #0a0a0a;
 
-  --foreground: oklch(0.985 0.002 247.839);
+  --foreground: #ededed;
 
   --card: oklch(0.21 0.034 264.665);
 
@@ -221,7 +221,9 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: "Cormorant Garamond", Georgia, "Times New Roman", Times, serif;
   }
 }
 
