@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import CurrencyInput from "react-currency-input-field";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useTranslation } from "@config/i18n";
 
 import { FaRegQuestionCircle, FaEdit } from "react-icons/fa";
 
@@ -58,6 +59,7 @@ const Worksheet: React.FC<WorksheetProps> = ({
   wsConnectionState,
   showSavingIndicator,
 }) => {
+  const { t } = useTranslation();
   const {
     name,
     rowData,
@@ -156,14 +158,14 @@ const Worksheet: React.FC<WorksheetProps> = ({
                   onKeyDown={handleNameKeyPress}
                   onBlur={handleNameSave}
                   className="text-2xl lg:text-3xl font-bold bg-transparent border-2 border-nt84orange focus:border-nt84orange"
-                  placeholder="Enter worksheet name..."
+                  placeholder={t('worksheet.enterName')}
                   autoFocus
                 />
               </div>
             ) : (
               <div className="flex items-center gap-2 group">
                 <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white break-words">
-                  {name || "Untitled Worksheet"}
+                  {name || t('worksheet.untitled')}
                 </h1>
                 {!isReadOnly && (
                   <button
@@ -172,7 +174,7 @@ const Worksheet: React.FC<WorksheetProps> = ({
                       setIsEditingName(true);
                     }}
                     className="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded flex-shrink-0"
-                    title="Edit worksheet name"
+                    title={t('worksheet.editName')}
                   >
                     <FaEdit className="w-4 h-4 text-gray-500 hover:text-nt84orange" />
                   </button>
@@ -199,19 +201,19 @@ const Worksheet: React.FC<WorksheetProps> = ({
             
             {/* Connection status text */}
             <span className="text-sm text-gray-600 dark:text-gray-400 break-words">
-              {wsConnectionState.status === 'connected' && 'Connected'}
-              {wsConnectionState.status === 'connecting' && 'Connecting...'}
-              {wsConnectionState.status === 'disconnected' && 'Disconnected'}
-              {wsConnectionState.status === 'error' && 'Connection Error'}
+              {wsConnectionState.status === 'connected' && t('status.connected')}
+              {wsConnectionState.status === 'connecting' && t('status.connecting')}
+              {wsConnectionState.status === 'disconnected' && t('status.disconnected')}
+              {wsConnectionState.status === 'error' && t('status.connectionError')}
               {wsConnectionState.status === 'connected' && (
-                <span className="hidden sm:inline"> • Auto-save enabled</span>
+                <span className="hidden sm:inline"> • {t('status.autoSave')}</span>
               )}
             </span>
             
             {/* Saving indicator */}
             {showSavingIndicator && (
               <span className="text-sm text-blue-600 dark:text-blue-400 animate-pulse">
-                • Saving...
+                • {t('worksheet.saving')}
               </span>
             )}
           </div>
@@ -234,14 +236,14 @@ const Worksheet: React.FC<WorksheetProps> = ({
               className="w-28 bg-nt84blue hover:bg-nt84bluedarker text-white dark:text-white cursor-pointer"
               onClick={() => createNewState(false)}
             >
-              Create New
+              {t('action.createNew')}
             </Button>
           )}
         </div>
       </div>
 
 
-      <h1 className="text-2xl font-bold mb-12 pl-2">1&#41;  Existing Cap Table</h1>
+      <h1 className="text-2xl font-bold mb-12 pl-2">1&#41;  {t('capTable.existing')}</h1>
       <div>
         <ExisingShareholderList
           rows={getCommonOnlyCapTable(conversionState)}
@@ -257,7 +259,7 @@ const Worksheet: React.FC<WorksheetProps> = ({
           isReadOnly={isReadOnly}
         />
       </div>
-      <h1 className="text-2xl font-bold mb-12 mt-24 pl-2">2&#41; SAFE Investors</h1>
+      <h1 className="text-2xl font-bold mb-12 mt-24 pl-2">2&#41; {t('capTable.slips')}</h1>
       <div>
         <SafeNoteList
           rows={getSAFERowPropsSelector(conversionState)}
@@ -273,12 +275,12 @@ const Worksheet: React.FC<WorksheetProps> = ({
         <div className="ml-2 pb-4 not-prose">
           {hasPricedRound ? (
             <h1 className="text-lg font-bold mb-4 mt-4">
-              Cap Table Before Priced Round
+              {t('capTable.beforePricedRound')}
             </h1>
           ) : (
-            <TooltipComponent content="Until a priced round is entered, this is just an estimate based on the assumption that all SAFE's convert at their current Cap or, if uncapped, the maximum Cap of all SAFE's">
+            <TooltipComponent content={t('capTable.beforePricedRoundTooltip')}>
               <h1 className="text-lg font-bold mb-4 mt-4">
-                Cap Table Before Priced Round
+                {t('capTable.beforePricedRound')}
                 <sup>
                   <FaRegQuestionCircle className="inline ml-1" />
                 </sup>
@@ -300,14 +302,14 @@ const Worksheet: React.FC<WorksheetProps> = ({
               onClick={togglepriceRounds}
               className="w-full bg-nt84blue hover:bg-nt84bluedarker text-white dark:text-white cursor-pointer"
             >
-              Remove Priced Round
+              {t('capTable.removePricedRound')}
             </Button>
           ) : (
             <Button
               onClick={togglepriceRounds}
               className="w-full bg-nt84blue hover:bg-nt84bluedarker text-white dark:text-white cursor-pointer"
             >
-              Add Priced Round
+              {t('capTable.addPricedRound')}
             </Button>
           )}
         </div>
@@ -317,12 +319,12 @@ const Worksheet: React.FC<WorksheetProps> = ({
         <div>
           <div>
             <hr />
-            <h1 className="text-2xl font-bold mb-12 mt-24">3&#41; New Round </h1>
-            <h1 className="text-lg font-bold mb-4">Round Details</h1>
+            <h1 className="text-2xl font-bold mb-12 mt-24">3&#41; {t('capTable.newRound')} </h1>
+            <h1 className="text-lg font-bold mb-4">{t('capTable.roundDetails')}</h1>
             <div className="sm:max-w-[960px] mx-auto mb-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 relative">
               <div className="flex flex-wrap gap-4">
                 <div className="w-full sm:w-1/5 md:w-1/5 lg:w-1/5">
-                  <h2 className="my-2 not-prose">Premoney Valuation</h2>
+                  <h2 className="my-2 not-prose">{t('capTable.premoney')}</h2>
                   {isReadOnly ? (
                     <div className="px-3 py-2 bg-gray-100 dark:bg-gray-600 text-gray-700 dark:text-gray-300 rounded flex-1 w-full">
                       ${formatNumberWithCommas(stringToNumber(preMoney))}
@@ -333,7 +335,7 @@ const Worksheet: React.FC<WorksheetProps> = ({
                       name="preMoney"
                       value={preMoney}
                       onValueChange={onValueChange("number")}
-                      placeholder="Investment"
+                      placeholder={t('capTable.investment')}
                       className="flex-1 w-full"
                       prefix="$"
                       decimalScale={0}
@@ -343,7 +345,7 @@ const Worksheet: React.FC<WorksheetProps> = ({
                   )}
                 </div>
                 <div className="w-full sm:w-1/5 md:w-1/5 lg:w-1/5">
-                  <h2 className="my-2 not-prose">Post Money Valuation</h2>
+                  <h2 className="my-2 not-prose">{t('capTable.postMoneyValuation')}</h2>
                   {isReadOnly ? (
                     <div className="px-3 py-2 bg-gray-100 dark:bg-gray-600 text-gray-700 dark:text-gray-300 rounded flex-1 w-full">
                       ${formatNumberWithCommas(postMoney)}
@@ -363,7 +365,7 @@ const Worksheet: React.FC<WorksheetProps> = ({
                   )}
                 </div>
                 <div className="w-full sm:w-1/5 md:w-1/5 lg:w-1/5">
-                  <h2 className="my-2 not-prose">Target Options Pool</h2>
+                  <h2 className="my-2 not-prose">{t('capTable.targetOptionsPoolLabel')}</h2>
                   {isReadOnly ? (
                     <div className="px-3 py-2 bg-gray-100 dark:bg-gray-600 text-gray-700 dark:text-gray-300 rounded flex-1 w-full">
                       {targetOptionsPool}%
@@ -374,7 +376,7 @@ const Worksheet: React.FC<WorksheetProps> = ({
                       name="targetOptionsPool"
                       value={targetOptionsPool}
                       onValueChange={onValueChange("percent")}
-                      placeholder="Target Options Pool %"
+                      placeholder={t('capTable.targetOptionsPool')}
                       className="flex-1 w-full"
                       prefix=""
                       suffix="%"
@@ -387,7 +389,7 @@ const Worksheet: React.FC<WorksheetProps> = ({
                 </div>
                 <div className="w-full sm:w-1/5 md:w-1/5 lg:w-1/5">
                   <div className="text-gray-500 dark:text-gray-400 mb-1 my-2">
-                    Additional Options
+                    {t('capTable.additionalOptions')}
                   </div>
                   <div className="px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded">
                     {formatNumberWithCommas(pricedConversion?.additionalOptions || 0)}
@@ -395,7 +397,7 @@ const Worksheet: React.FC<WorksheetProps> = ({
                 </div>
               </div>
             </div>
-            <h1 className="text-lg font-bold mb-4 mt-12">Series Investors</h1>
+            <h1 className="text-lg font-bold mb-4 mt-12">{t('capTable.seriesInvestors')}</h1>
             <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
               <SeriesInvestorList
                 rows={getSeriesPropsSelector(conversionState)}
@@ -428,7 +430,7 @@ const Worksheet: React.FC<WorksheetProps> = ({
                   updateTargetOptionsChange={updateTargetOptionsChange}
                 />
                 <h2 className="text-lg font-bold mb-4 mt-8 not-prose">
-                  Cap Table after Priced Round
+                  {t('capTable.afterPricedRound')}
                 </h2>
                 <CapTableResults
                   {...getPricedRoundCapTableSelector({

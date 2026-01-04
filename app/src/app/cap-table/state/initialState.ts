@@ -52,21 +52,21 @@ export const initialState = ({
       name: `Issued Options`,
       shares: 250_000,
     },
-    // YC 7% SAFE
+    // SORS 7% SLIP
     {
       id: getID(),
       type: CapTableRowType.Safe,
-      name: "YC 7%",
+      name: "SORS 7%",
       investment: 125_000,
       discount: 0,
       cap: 125_000 / 0.07,
       conversionType: "post",
     },
-    // Uncapped YC MFN SAFE (Cap to best cap of all safes)
+    // Uncapped Antler MFN SLIP (Cap to best cap of all slips)
     {
       id: getID(),
       type: CapTableRowType.Safe,
-      name: "YC MFN",
+      name: "Antler MFN",
       investment: 375_000,
       discount: 0,
       cap: 10_000_000,
@@ -75,7 +75,7 @@ export const initialState = ({
     {
       id: getID(),
       type: CapTableRowType.Safe,
-      name: "1984 Ventures",
+      name: "Investinor",
       investment: 750_000,
       discount: 0,
       cap: 10_000_000,
