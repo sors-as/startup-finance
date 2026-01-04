@@ -11,6 +11,8 @@ import { CapTableOwnershipError } from "@library/cap-table/types";
 
 import { FaMinus, FaPlus } from "react-icons/fa";
 
+import { useTranslation } from "@config/i18n";
+
 export type OwnershipPctNotes = {
   error?: CapTableOwnershipError["type"];
   explanation?: string;
@@ -40,6 +42,9 @@ export interface PricedRoundProps extends PricedRoundPropsData {
   updatePreMoneyChange: (change: number) => void;
   updateTargetOptionsChange: (change: number) => void;
 }
+
+
+const { t } = useTranslation();
 
 const roundFactor = Math.pow(10, 5);
 const quickRound = (num: number) => Math.round(num * roundFactor) / roundFactor;

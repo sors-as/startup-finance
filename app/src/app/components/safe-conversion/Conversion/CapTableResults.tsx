@@ -1,6 +1,6 @@
 import { formatNumberWithCommas } from "@library/utils/numberFormatting";
 import { CapTableRow, CapTableRowType, TotalCapTableRow } from "@library/cap-table/types";
-
+import { useTranslation } from "@config/i18n";
 export type CapTableProps = {
   rows: CapTableRow[];
   changes: number[];
@@ -13,6 +13,9 @@ type CapTableRowItemProps = {
   ownershipError?: string;
   ownershipNotes?: string;
 }
+
+const { t } = useTranslation();
+
 
 const roundTo = (num: number, decimal: number): number => {
   return Math.round(num * Math.pow(10, decimal)) / Math.pow(10, decimal);
@@ -41,27 +44,27 @@ const CapTableCardItem: React.FC<CapTableRowItemProps> = ({shareholder, change})
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {investment !== null && (
           <div>
-            <div className="text-gray-500 dark:text-gray-400 text-sm">Investment</div>
+            <div className="text-gray-500 dark:text-gray-400 text-sm">{t('capTable.investment')}</div>
             <div className="text-gray-900 dark:text-white">${formatNumberWithCommas(investment || 0)}</div>
           </div>
         )}
         
         {pps !== null && (
           <div>
-            <div className="text-gray-500 dark:text-gray-400 text-sm">PPS</div>
+            <div className="text-gray-500 dark:text-gray-400 text-sm">PPA</div>
             <div className="text-gray-900 dark:text-white">${formatNumberWithCommas(pps || 0)}</div>
           </div>
         )}
         
         {shareholder.shares && (
           <div>
-            <div className="text-gray-500 dark:text-gray-400 text-sm">Shares</div>
+            <div className="text-gray-500 dark:text-gray-400 text-sm">{t('label.shares')}???</div>
             <div className="text-gray-900 dark:text-white">{formatNumberWithCommas(shareholder.shares || 0)}</div>
           </div>
         )}
         
         <div>
-          <div className="text-gray-500 dark:text-gray-400 text-sm">Ownership</div>
+          <div className="text-gray-500 dark:text-gray-400 text-sm">{t('label.ownership')}</div>
           <div className="flex items-center">
             <span className="text-gray-900 dark:text-white">{ownershipPct}</span>
             {hasChanges && (
@@ -86,22 +89,22 @@ const TotalCard: React.FC<{totalRow: TotalCapTableRow}> = ({totalRow}) => {
       
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div>
-          <div className="text-gray-500 dark:text-gray-400 text-sm">Investment</div>
+          <div className="text-gray-500 dark:text-gray-400 text-sm">{t('capTable.investment')}</div>
           <div className="text-gray-900 dark:text-white">${formatNumberWithCommas(totalRow.investment)}</div>
         </div>
         
         <div>
-          <div className="text-gray-500 dark:text-gray-400 text-sm">PPS</div>
+          <div className="text-gray-500 dark:text-gray-400 text-sm">PPA</div>
           <div className="text-gray-900 dark:text-white">-</div>
         </div>
         
         <div>
-          <div className="text-gray-500 dark:text-gray-400 text-sm">Shares</div>
+          <div className="text-gray-500 dark:text-gray-400 text-sm">{t('label.shares')}</div>
           <div className="text-gray-900 dark:text-white">{formatNumberWithCommas(totalRow.shares ?? 0)}</div>
         </div>
         
         <div>
-          <div className="text-gray-500 dark:text-gray-400 text-sm">Ownership</div>
+          <div className="text-gray-500 dark:text-gray-400 text-sm">{t('label.ownership')}</div>
           <div className="text-gray-900 dark:text-white">{(totalRow.ownershipPct * 100).toFixed(2)}%</div>
         </div>
       </div>
@@ -116,11 +119,11 @@ const CapTableDesktopView: React.FC<CapTableProps> = ({ rows, changes, totalRow 
       <table className="w-full border-collapse">
         <thead className="bg-gray-100 dark:bg-gray-800">
           <tr>
-            <th className="text-left p-3 border-b border-gray-200 dark:border-gray-700">Name</th>
-            <th className="text-right p-3 border-b border-gray-200 dark:border-gray-700">Investment</th>
-            <th className="text-right p-3 border-b border-gray-200 dark:border-gray-700">PPS</th>
-            <th className="text-right p-3 border-b border-gray-200 dark:border-gray-700">Shares</th>
-            <th className="text-right p-3 border-b border-gray-200 dark:border-gray-700">Ownership</th>
+            <th className="text-left p-3 border-b border-gray-200 dark:border-gray-700">{t('shareholder.name')}</th>
+            <th className="text-right p-3 border-b border-gray-200 dark:border-gray-700">{t('capTable.investment')}</th>
+            <th className="text-right p-3 border-b border-gray-200 dark:border-gray-700">PPA</th>
+            <th className="text-right p-3 border-b border-gray-200 dark:border-gray-700">{t('label.shares')}</th>
+            <th className="text-right p-3 border-b border-gray-200 dark:border-gray-700">{t('label.ownership')}</th>
           </tr>
         </thead>
         <tbody>

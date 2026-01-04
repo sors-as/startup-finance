@@ -239,7 +239,7 @@ const SAFEInputRow: React.FC<SAFEInputRowProps> = ({
         </div>
 
         <div className="mb-3 md:mb-0 md:w-[12%]">
-          <div className="text-gray-500 dark:text-gray-400 mb-1">Ownership</div>
+          <div className="text-gray-500 dark:text-gray-400 mb-1">{t('label.ownership')}</div>
           <div className="w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded">
             <PercentNote
               pct={data.ownershipPct ?? 0}
@@ -324,7 +324,7 @@ const SafeNoteList: React.FC<RowsProps<SAFEProps>> = ({
             onClick={onAddRow}
             className="w-full bg-nt84blue hover:bg-nt84bluedarker dark:text-white"
           >
-            + {t('capTable.addSafe')}
+            + {t('capTable.addSlip')}
           </Button>
         </div>
       )}

@@ -22,6 +22,8 @@ interface SeriesRowProps {
   isReadOnly?: boolean;
 }
 
+const { t } = useTranslation();
+
 const SeriesInvestorRow: React.FC<SeriesRowProps> = ({
   data,
   onDelete,
@@ -100,7 +102,7 @@ const SeriesInvestorRow: React.FC<SeriesRowProps> = ({
 
         <div className="mb-3 md:mb-0 md:flex-1">
           <div className="text-gray-500 dark:text-gray-400 mb-1">
-            Ownership %
+            {t('label.ownership')} %
           </div>
           <div className="px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded">
             {data.ownershipPct.toFixed(2)}%
@@ -118,7 +120,6 @@ const SeriesInvestorList: React.FC<RowsProps<SeriesProps>> = ({
   onAddRow,
   isReadOnly = false,
 }) => {
-  const { t } = useTranslation();
   return (
     <div className="w-full">
       {rows.map((note, idx) => (

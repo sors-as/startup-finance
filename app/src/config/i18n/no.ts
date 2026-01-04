@@ -33,8 +33,8 @@ export const translations = {
   
   // Shareholders
   'shareholder.name': 'Aksjonær',
-  'shareholder.shares': 'aksjer',
-  'shareholder.ownership': 'eierandel',
+  'shareholder.shares': 'Aksjer',
+  'shareholder.ownership': 'Eierandel',
   'shareholder.type': 'Type',
   'shareholder.add': 'Legg til aksjonær',
   'shareholder.common': 'Ordinære',
@@ -51,11 +51,11 @@ export const translations = {
   'finance.pps': 'Pris per aksje',
   'finance.shares': 'aksjer',
   'finance.dilution': 'Utvanning',
-  'finance.ownership': 'eierandel',
+  'finance.ownership': 'Eierandel',
   'finance.targetOptions': 'Målsatt opsjonsprogram',
   
   // Series/Rounds
-  'series.name': 'Emisjonsnavn',
+  'series.name': 'Navn på runde',
   'series.add': 'Legg til emisjon',
   'series.slip': 'SLIP',
   'series.seriesA': 'Serie A',
@@ -169,8 +169,8 @@ export const translations = {
   'label.amount': 'Beløp',
   'label.valCap': 'Verdsettelsestak',
   'label.discount': 'Rabatt',
-  'label.shares': 'aksjer',
-  'label.ownership': 'eierandel',
+  'label.shares': 'Aksjer',
+  'label.ownership': 'Eierandel',
   'label.newOwnership': 'Ny eierandel',
   'label.dilution': 'Utvanning',
 } as const;
