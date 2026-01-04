@@ -14,8 +14,6 @@ type CapTableRowItemProps = {
   ownershipNotes?: string;
 }
 
-const { t } = useTranslation();
-
 
 const roundTo = (num: number, decimal: number): number => {
   return Math.round(num * Math.pow(10, decimal)) / Math.pow(10, decimal);
@@ -23,6 +21,7 @@ const roundTo = (num: number, decimal: number): number => {
 
 // Card view for all screen sizes
 const CapTableCardItem: React.FC<CapTableRowItemProps> = ({shareholder, change}) => {
+  const { t } = useTranslation();
   const investment = (shareholder.type === CapTableRowType.Safe || shareholder.type === CapTableRowType.Series) ? shareholder.investment : null
   const pps = (shareholder.type === CapTableRowType.Safe || shareholder.type === CapTableRowType.Series) ? shareholder.pps : null
 
@@ -83,6 +82,7 @@ const CapTableCardItem: React.FC<CapTableRowItemProps> = ({shareholder, change})
 
 // Total card for all screen sizes
 const TotalCard: React.FC<{totalRow: TotalCapTableRow}> = ({totalRow}) => {
+  const { t } = useTranslation();
   return (
     <div className="w-full max-w-full sm:max-w-[960px] mx-auto mb-4 p-4 bg-gray-100 dark:bg-gray-900 rounded-lg border-2 border-gray-300 dark:border-gray-700">
       <div className="font-bold text-gray-900 dark:text-white mb-3">Total</div>
@@ -114,6 +114,7 @@ const TotalCard: React.FC<{totalRow: TotalCapTableRow}> = ({totalRow}) => {
 
 // Desktop table view
 const CapTableDesktopView: React.FC<CapTableProps> = ({ rows, changes, totalRow }) => {
+  const { t } = useTranslation();
   return (
     <div className="w-full max-w-full sm:max-w-[960px] mx-auto overflow-x-auto">
       <table className="w-full border-collapse">

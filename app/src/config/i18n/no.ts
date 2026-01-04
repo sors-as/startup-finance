@@ -173,4 +173,9 @@ export const translations = {
   'label.ownership': 'Eierandel',
   'label.newOwnership': 'Ny eierandel',
   'label.dilution': 'Utvanning',
+  
+  // Language picker
+  'language.english': 'Engelsk',
+  'language.norwegian': 'Norsk',
+  'language.switchTo': 'Bytt til',
 } as const;

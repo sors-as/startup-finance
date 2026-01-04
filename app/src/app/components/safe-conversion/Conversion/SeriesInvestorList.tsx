@@ -22,14 +22,13 @@ interface SeriesRowProps {
   isReadOnly?: boolean;
 }
 
-const { t } = useTranslation();
-
 const SeriesInvestorRow: React.FC<SeriesRowProps> = ({
   data,
   onDelete,
   onUpdate,
   isReadOnly = false,
 }) => {
+  const { t } = useTranslation();
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -120,6 +119,7 @@ const SeriesInvestorList: React.FC<RowsProps<SeriesProps>> = ({
   onAddRow,
   isReadOnly = false,
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="w-full">
       {rows.map((note, idx) => (
