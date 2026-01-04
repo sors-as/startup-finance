@@ -74,7 +74,7 @@ const Page: React.FC = () => {
           <div className="text-sm text-gray-500 dark:text-gray-400 mb-2">
             <a
               className="hover:text-sors-primary dark:hover:text-sors-light-blue"
-              href={BRANDING.docsUrl}
+              href={BRANDING.toolsUrl}
             >
               {BRANDING.content.breadcrumbHome}
             </a>{" "}

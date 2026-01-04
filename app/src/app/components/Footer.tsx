@@ -37,7 +37,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors">
+                <a href={BRANDING.toolsUrl} className="text-gray-300 hover:text-blue-400 transition-colors">
                   Verktøy
                 </a>
               </li>

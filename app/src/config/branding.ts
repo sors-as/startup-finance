@@ -6,6 +6,7 @@ export const BRANDING = {
   
   // URLs
   website: "https://sors.no",
+  toolsUrl: "https://sors.no/verktoy",
   docsUrl: "https://sors.no/hjelp",
   contactEmail: "kontakt@sors.no",
   githubUrl: "https://github.com/1984vc/startup-finance",

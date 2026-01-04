@@ -29,7 +29,7 @@ export function Header() {
             <a href={`${BRANDING.website}/tjenester`} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
               Tjenester
             </a>
-            <a href="#" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            <a href={BRANDING.toolsUrl} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
               Verktøy
             </a>
             <a href={`${BRANDING.website}/om-oss`} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
@@ -63,7 +63,7 @@ export function Header() {
               <a href={`${BRANDING.website}/tjenester`} className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 Tjenester
               </a>
-              <a href="#" className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              <a href={BRANDING.toolsUrl} className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 Verktøy
               </a>
               <a href={`${BRANDING.website}/om-oss`} className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
