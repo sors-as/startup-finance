@@ -28,3 +28,6 @@ binding = "ASSETS"
 # Enable observability for staging
 [observability]
 enabled = true
+
+# Secrets (set via: wrangler secret put RESEND_API_KEY)
+# RESEND_API_KEY - API key for Resend email service
