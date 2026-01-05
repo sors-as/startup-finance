@@ -416,10 +416,10 @@ const Worksheet: React.FC<WorksheetProps> = ({
 
           <div className="pt-10">
             <h2 className="text-2xl font-bold mb-4 not-prose">
-              Priced Round Overview
+              {t('pricedRound.overview')}
             </h2>
             {errors.safeError && (
-              <p className="text-red-500 text-xl">SAFE Conversion Error</p>
+              <p className="text-red-500 text-xl">SLIP Conversion Error</p>
             )}
             {!errors.safeError && (
               <div className="">

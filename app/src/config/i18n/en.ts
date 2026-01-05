@@ -180,6 +180,9 @@ export const translations = {
   'capTable.seriesInvestors': 'Series Investors',
   'capTable.afterPricedRound': 'Cap Table After Priced Round',
   'capTable.investment': 'Investment',
+
+  // Priced Round
+  'pricedRound.overview': 'Priced Round Overview',
   
   // Labels
   'label.name': 'Name',

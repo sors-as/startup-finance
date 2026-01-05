@@ -56,7 +56,7 @@ export const translations = {
   
   // Series/Rounds
   'series.name': 'Navn på runde',
-  'series.add': 'Legg til emisjon',
+  'series.add': 'Legg til Investor',
   'series.slip': 'SLIP',
   'series.seriesA': 'Serie A',
   'series.seriesB': 'Serie B',
@@ -180,6 +180,9 @@ export const translations = {
   'capTable.seriesInvestors': 'Serie-investorer',
   'capTable.afterPricedRound': 'Cap Table etter priset runde',
   'capTable.investment': 'Investering',
+
+  //
+  'pricedRound.overview': 'Oversikt over kapitalforhøyelse',
   
   // Labels
   'label.name': 'Navn',

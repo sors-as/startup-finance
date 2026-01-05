@@ -58,12 +58,7 @@ export function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4">Get in Touch</h4>
             <div className="text-gray-300 space-y-2 mb-4">
-              <p>Please reach out, if only for a chat.</p>
-              <p>
-                <a href={`mailto:${BRANDING.contactEmail}`} className="hover:text-blue-400 transition-colors">
-                  {BRANDING.contactEmail}
-                </a>
-              </p>
+              <p>Please <a href="https://www.sors.no/contact">reach out</a>, if only for a chat.</p>
             </div>
             {BRANDING.features.showOriginalAttribution && (
               <p className="text-gray-400 text-sm mt-6">

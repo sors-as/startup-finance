@@ -117,38 +117,6 @@ const Page: React.FC = () => {
           </button>
         </div>
 
-        <div className="w-full max-w-5xl px-4 mt-24 border-t pt-8 border-gray-300 dark:border-gray-500">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-            Om Cap Table Kalkulatoren
-          </h1>
-
-          <div className="space-y-6 text-gray-700 dark:text-gray-300">
-            <p className="leading-relaxed">
-              En åpen kildekode-kalkulator for å hjelpe grunnleggere med å modellere 
-              SAFE-avtaler og finansieringsrunder. Verktøyet er tilgjengelig på{" "}
-              <a
-                href={BRANDING.githubUrl}
-                target="_blank"
-                rel="noopener"
-                className="text-sors-primary hover:text-sors-primary-dark underline font-medium"
-              >
-                GitHub
-              </a>
-              .
-            </p>
-
-            <p className="leading-relaxed pt-2 border-t border-gray-200 dark:border-gray-700">
-              Vi setter pris på all tilbakemelding! Hvis du ønsker å rapportere feil, 
-              gi tilbakemelding eller foreslå forbedringer, vennligst send e-post til{" "}
-              <a
-                href={`mailto:${BRANDING.contactEmail}`}
-                className="text-sors-primary hover:text-sors-primary-dark underline font-medium"
-              >
-                {BRANDING.contactEmail}
-              </a>
-            </p>
-          </div>
-        </div>
       </main>
 
       <Footer />
