@@ -69,7 +69,7 @@ const CapTableCardItem: React.FC<CapTableRowItemProps> = ({shareholder, change})
         
         {shareholder.shares && (
           <div>
-            <div className="text-gray-500 dark:text-gray-400 text-sm">{t('label.shares')}???</div>
+            <div className="text-gray-500 dark:text-gray-400 text-sm">{t('label.shares')}</div>
             <div className="text-gray-900 dark:text-white">{formatNumberLocale(shareholder.shares || 0, locale)}</div>
           </div>
         )}
