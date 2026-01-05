@@ -206,6 +206,7 @@ export const translations = {
   'label.ownership': 'Eierandel',
   'label.newOwnership': 'Ny eierandel',
   'label.dilution': 'Utvanning',
+  'label.pps': 'PPA',
   
   // Language picker
   'language.english': 'Engelsk',

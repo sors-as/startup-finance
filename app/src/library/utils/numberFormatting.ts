@@ -100,7 +100,21 @@ export const formatNumberLocale = (value: number | string, locale: string) => {
 
 export const formatCurrencySymbol = (locale: string) => {
   if (locale === 'nb-NO' || locale === 'no') {
-    return 'kr';
+    return 'kr ';  // Space after kr for Norwegian
   }
   return '$';
+};
+
+// Format a number with specific decimal places based on locale
+export const formatNumberWithDecimals = (value: number, decimals: number, locale: string) => {
+  if (locale === 'nb-NO' || locale === 'no') {
+    return value.toLocaleString('nb-NO', {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals,
+    });
+  }
+  return value.toLocaleString('en-US', {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  });
 };

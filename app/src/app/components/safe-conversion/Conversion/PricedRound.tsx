@@ -1,4 +1,4 @@
-import { formatNumberLocale, formatCurrencySymbol } from "@library/utils/numberFormatting";
+import { formatNumberLocale, formatCurrencySymbol, formatNumberWithDecimals } from "@library/utils/numberFormatting";
 import { BestFit } from "@library/conversion-solver";
 import {
   Card,
@@ -127,7 +127,7 @@ const PricedRound: React.FC<PricedRoundProps> = (props) => {
           </div>
           <CardHeader className="pb-0 text-center">
             <CardTitle className="text-xl font-semibold tracking-tight">
-              {formatCurrencySymbol(locale)}{current.pricedConversion.pps.toFixed(5)}
+              {formatCurrencySymbol(locale)}{formatNumberWithDecimals(current.pricedConversion.pps, 5, locale)}
             </CardTitle>
           </CardHeader>
           <CardContent className="text-center">
@@ -202,7 +202,7 @@ const PricedRound: React.FC<PricedRoundProps> = (props) => {
           </div>
           <CardHeader className="pb-0 text-center">
             <CardTitle className="text-xl font-semibold tracking-tight">
-              {current.totalRoundDilution.toFixed(2)}%
+              {formatNumberWithDecimals(current.totalRoundDilution, 2, locale)}%
             </CardTitle>
           </CardHeader>
           <CardContent className="text-center">
@@ -212,9 +212,7 @@ const PricedRound: React.FC<PricedRoundProps> = (props) => {
           </CardContent>
           <div className="text-sm text-gray-600 dark:text-gray-200 bottom-0 z-10 absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             {changes.dilution !== 0
-              ? ` (${changes.dilution > 0 ? "+" : ""}${changes.dilution.toFixed(
-                  2
-                )})`
+              ? ` (${changes.dilution > 0 ? "+" : ""}${formatNumberWithDecimals(changes.dilution, 2, locale)})`
               : ""}
           </div>
         </Card>
@@ -337,7 +335,7 @@ const PricedRound: React.FC<PricedRoundProps> = (props) => {
           </div>
           <CardHeader className="pb-0 text-center">
             <CardTitle className="text-xl font-semibold tracking-tight">
-              {(currentTargetOptions * 100).toFixed(2)}%
+              {formatNumberWithDecimals(currentTargetOptions * 100, 2, locale)}%
             </CardTitle>
           </CardHeader>
           <CardContent className="text-center">

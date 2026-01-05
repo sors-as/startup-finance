@@ -206,6 +206,7 @@ export const translations = {
   'label.ownership': 'Ownership',
   'label.newOwnership': 'New Ownership',
   'label.dilution': 'Dilution',
+  'label.pps': 'PPS',
   
   // Language picker
   'language.english': 'English',
