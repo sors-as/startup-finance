@@ -183,7 +183,7 @@ export const translations = {
 
   // Priced Round
   'pricedRound.overview': 'Oversikt over kapitalforhøyelse',
-  'pricedRound.pps': 'PPS',
+  'pricedRound.pps': 'PPA',
   'pricedRound.ppsTooltip': 'PPS: Pris per aksje (PPS) i en runde beregnes ved å dele pre-money verdsettelse på antall pre-money aksjer',
   'pricedRound.newSharesIssued': 'Nye aksjer utstedt',
   'pricedRound.additionalOptions': 'Tilleggsopsjoner',
@@ -206,7 +206,6 @@ export const translations = {
   'label.ownership': 'Eierandel',
   'label.newOwnership': 'Ny eierandel',
   'label.dilution': 'Utvanning',
-  'label.pps': 'PPA',
   
   // Language picker
   'language.english': 'Engelsk',

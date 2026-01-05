@@ -62,7 +62,7 @@ const CapTableCardItem: React.FC<CapTableRowItemProps> = ({shareholder, change})
         
         {pps !== null && (
           <div>
-            <div className="text-gray-500 dark:text-gray-400 text-sm">{t('label.pps')}</div>
+            <div className="text-gray-500 dark:text-gray-400 text-sm">{t('pricedRound.pps')}</div>
             <div className="text-gray-900 dark:text-white">{formatCurrencySymbol(locale)}{formatNumberLocale(pps || 0, locale)}</div>
           </div>
         )}
@@ -106,7 +106,7 @@ const TotalCard: React.FC<{totalRow: TotalCapTableRow}> = ({totalRow}) => {
         </div>
         
         <div>
-          <div className="text-gray-500 dark:text-gray-400 text-sm">{t('label.pps')}</div>
+          <div className="text-gray-500 dark:text-gray-400 text-sm">{t('pricedRound.pps')}</div>
           <div className="text-gray-900 dark:text-white">-</div>
         </div>
         
@@ -146,7 +146,7 @@ const CapTableDesktopView: React.FC<CapTableProps> = ({ rows, changes, totalRow 
           <tr>
             <th className="text-left p-3 border-b border-gray-200 dark:border-gray-700">{t('shareholder.name')}</th>
             <th className="text-right p-3 border-b border-gray-200 dark:border-gray-700">{t('capTable.investment')}</th>
-            <th className="text-right p-3 border-b border-gray-200 dark:border-gray-700">{t('label.pps')}</th>
+            <th className="text-right p-3 border-b border-gray-200 dark:border-gray-700">{t('pricedRound.pps')}</th>
             <th className="text-right p-3 border-b border-gray-200 dark:border-gray-700">{t('label.shares')}</th>
             <th className="text-right p-3 border-b border-gray-200 dark:border-gray-700">{t('label.ownership')}</th>
           </tr>
