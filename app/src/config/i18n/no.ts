@@ -96,6 +96,24 @@ export const translations = {
   'share.creatingCopy': 'Oppretter din kopi...',
   'share.cloneDescription': 'Opprett din egen redigerbare kopi av dette regnearket. Alle data vil bli duplisert.',
   
+  // Email
+  'email.title': 'Send som e-post',
+  'email.button': 'Send e-post',
+  'email.sending': 'Sender...',
+  'email.recipients': 'Mottakere',
+  'email.recipientsPlaceholder': 'Skriv inn e-postadresser (kommaseparert)',
+  'email.message': 'Personlig melding (valgfritt)',
+  'email.messagePlaceholder': 'Legg til en personlig melding som skal inkluderes i e-posten...',
+  'email.send': 'Send e-post',
+  'email.cancel': 'Avbryt',
+  'email.success': 'E-post sendt!',
+  'email.error': 'Kunne ikke sende e-post',
+  'email.invalidEmails': 'Ugyldige e-postadresser:',
+  'email.rateLimitExceeded': 'Begrensning nådd. Maksimum 5 e-poster per regneark per time.',
+  'email.remainingEmails': 'e-poster gjenstår denne timen',
+  'email.description': 'Send denne cap-tabellen til én eller flere e-postadresser. E-posten vil inkludere en skrivebeskyttet lenke og automatisk CC kontakt@sors.no.',
+  'email.multipleRecipients': 'Du kan angi flere e-postadresser adskilt med komma.',
+  
   // History
   'history.title': 'Siste Oppsett',
   'history.titleLine1': 'Siste',

@@ -20,6 +20,7 @@ import { getSeriesPropsSelector } from "@/cap-table/state/selectors/SeriesPropsS
 import SafeNoteList from "@/components/safe-conversion/Conversion/SafeNoteList";
 import Share from "@/components/safe-conversion/Conversion/Share";
 import History from "@/components/safe-conversion/Conversion/History";
+import SendEmailButton from "@/components/SendEmailButton";
 import { CapTableResults } from "@/components/safe-conversion/Conversion/CapTableResults";
 import { getReadOnlyUrl, getFullAccessUrl, hasEditAccess } from "./state/selectors/ShareURLSelector";
 import { getErrorSelector } from "./state/selectors/ErrorSelector";
@@ -221,6 +222,10 @@ const Worksheet: React.FC<WorksheetProps> = ({
 
         {/* Right side: Action Buttons */}
         <div className="flex gap-2 flex-shrink-0">
+          <SendEmailButton 
+            worksheetId={conversionState.objectId}
+            worksheetName={name || t('worksheet.untitled')}
+          />
           <Share 
             readOnlyUrl={getReadOnlyUrl(conversionState)}
             fullAccessUrl={hasEditAccess(conversionState) ? getFullAccessUrl(conversionState) : undefined}

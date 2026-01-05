@@ -96,6 +96,24 @@ export const translations = {
   'share.creatingCopy': 'Creating your copy...',
   'share.cloneDescription': 'Create your own editable copy of this worksheet. All data will be duplicated.',
   
+  // Email
+  'email.title': 'Send as Email',
+  'email.button': 'Send Email',
+  'email.sending': 'Sending...',
+  'email.recipients': 'Recipients',
+  'email.recipientsPlaceholder': 'Enter email addresses (comma-separated)',
+  'email.message': 'Personal Message (Optional)',
+  'email.messagePlaceholder': 'Add a personal message to include in the email...',
+  'email.send': 'Send Email',
+  'email.cancel': 'Cancel',
+  'email.success': 'Email sent successfully!',
+  'email.error': 'Failed to send email',
+  'email.invalidEmails': 'Invalid email addresses:',
+  'email.rateLimitExceeded': 'Rate limit exceeded. Maximum 5 emails per worksheet per hour.',
+  'email.remainingEmails': 'emails remaining this hour',
+  'email.description': 'Send this cap table to one or more email addresses. The email will include a read-only link and automatically CC kontakt@sors.no.',
+  'email.multipleRecipients': 'You can enter multiple email addresses separated by commas.',
+  
   // History
   'history.title': 'Recent Worksheets',
   'history.titleLine1': 'Recent',
