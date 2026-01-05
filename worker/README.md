@@ -153,14 +153,6 @@ npm run dev
 # - WebSocket: ws://localhost:8787
 ```
 
-### Testing
-
-Open `example-client.html` in your browser to test the API:
-
-1. **WebSocket Connection**: Connect to real-time updates
-2. **Get Object**: Retrieve current object state
-3. **Update Object**: Modify object and see real-time updates
-
 ### Example Usage
 
 #### JavaScript/Fetch API
