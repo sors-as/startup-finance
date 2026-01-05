@@ -42,7 +42,7 @@ wrangler d1 migrations apply DB --env staging
 #### For Local Development:
 ```bash
 cd worker
-npm run db:init
+pnpm run db:init
 ```
 
 ### 3. Deploy the Application
