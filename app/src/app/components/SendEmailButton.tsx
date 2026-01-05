@@ -86,8 +86,8 @@ const SendEmailButton: React.FC<SendEmailButtonProps> = ({ worksheetId, workshee
         disabled={!worksheetId}
       >
         <span className="flex items-center justify-center gap-2">
-          <FaEnvelope size={14} />
           <span>{t('email.button')}</span>
+          <FaEnvelope size={14} />
         </span>
       </Button>
 

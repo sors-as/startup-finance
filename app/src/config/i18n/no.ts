@@ -98,7 +98,7 @@ export const translations = {
   
   // Email
   'email.title': 'Send som e-post',
-  'email.button': 'Send e-post',
+  'email.button': 'E-post',
   'email.sending': 'Sender...',
   'email.recipients': 'Mottakere',
   'email.recipientsPlaceholder': 'Skriv inn e-postadresser (kommaseparert)',
@@ -111,7 +111,7 @@ export const translations = {
   'email.invalidEmails': 'Ugyldige e-postadresser:',
   'email.rateLimitExceeded': 'Begrensning nådd. Maksimum 5 e-poster per regneark per time.',
   'email.remainingEmails': 'e-poster gjenstår denne timen',
-  'email.description': 'Send denne cap-tabellen til én eller flere e-postadresser. E-posten vil inkludere en skrivebeskyttet lenke og automatisk CC kontakt@sors.no.',
+  'email.description': 'Send denne cap-tabellen til én eller flere e-postadresser.',
   'email.multipleRecipients': 'Du kan angi flere e-postadresser adskilt med komma.',
   
   // History

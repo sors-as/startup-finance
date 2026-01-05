@@ -98,7 +98,7 @@ export const translations = {
   
   // Email
   'email.title': 'Send as Email',
-  'email.button': 'Send Email',
+  'email.button': 'Email',
   'email.sending': 'Sending...',
   'email.recipients': 'Recipients',
   'email.recipientsPlaceholder': 'Enter email addresses (comma-separated)',
@@ -111,7 +111,7 @@ export const translations = {
   'email.invalidEmails': 'Invalid email addresses:',
   'email.rateLimitExceeded': 'Rate limit exceeded. Maximum 5 emails per worksheet per hour.',
   'email.remainingEmails': 'emails remaining this hour',
-  'email.description': 'Send this cap table to one or more email addresses. The email will include a read-only link and automatically CC kontakt@sors.no.',
+  'email.description': 'Send this cap table to one or more email addresses.',
   'email.multipleRecipients': 'You can enter multiple email addresses separated by commas.',
   
   // History
