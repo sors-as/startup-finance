@@ -82,3 +82,25 @@ export const shortenedNOK = (value: number | string) => {
     return "kr " + value.toString();
   }
 };
+
+// Locale-aware formatting functions
+export const formatCurrencyLocale = (value: number | string, locale: string) => {
+  if (locale === 'nb-NO' || locale === 'no') {
+    return formatNOKWithCommas(value);
+  }
+  return formatUSDWithCommas(value);
+};
+
+export const formatNumberLocale = (value: number | string, locale: string) => {
+  if (locale === 'nb-NO' || locale === 'no') {
+    return formatNumberWithCommasNO(value);
+  }
+  return formatNumberWithCommas(value);
+};
+
+export const formatCurrencySymbol = (locale: string) => {
+  if (locale === 'nb-NO' || locale === 'no') {
+    return 'kr';
+  }
+  return '$';
+};

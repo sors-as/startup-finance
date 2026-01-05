@@ -1,4 +1,4 @@
-import { formatNumberWithCommas } from "@library/utils/numberFormatting";
+import { formatNumberLocale, formatCurrencySymbol } from "@library/utils/numberFormatting";
 import { CapTableRow, CapTableRowType, TotalCapTableRow } from "@library/cap-table/types";
 import { useTranslation } from "@config/i18n";
 export type CapTableProps = {
@@ -21,7 +21,7 @@ const roundTo = (num: number, decimal: number): number => {
 
 // Card view for all screen sizes
 const CapTableCardItem: React.FC<CapTableRowItemProps> = ({shareholder, change}) => {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const investment = (shareholder.type === CapTableRowType.Safe || shareholder.type === CapTableRowType.Series) ? shareholder.investment : null
   const pps = (shareholder.type === CapTableRowType.Safe || shareholder.type === CapTableRowType.Series) ? shareholder.pps : null
 
@@ -35,30 +35,40 @@ const CapTableCardItem: React.FC<CapTableRowItemProps> = ({shareholder, change})
       ownershipPct = "TBD"
     }
   }
+  
+  // Translate special shareholder names
+  const getDisplayName = () => {
+    if (shareholder.name === "Issued Options") {
+      return t('shareholder.issuedOptions');
+    } else if (shareholder.name === "Unused Options Pool") {
+      return t('shareholder.unusedPool');
+    }
+    return shareholder.name;
+  };
 
   return (
     <div className="w-full max-w-full sm:max-w-[960px] mx-auto mb-4 p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
-      <div className="font-bold text-gray-900 dark:text-white mb-3">{shareholder.name}</div>
+      <div className="font-bold text-gray-900 dark:text-white mb-3">{getDisplayName()}</div>
       
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {investment !== null && (
           <div>
             <div className="text-gray-500 dark:text-gray-400 text-sm">{t('capTable.investment')}</div>
-            <div className="text-gray-900 dark:text-white">${formatNumberWithCommas(investment || 0)}</div>
+            <div className="text-gray-900 dark:text-white">{formatCurrencySymbol(locale)}{formatNumberLocale(investment || 0, locale)}</div>
           </div>
         )}
         
         {pps !== null && (
           <div>
             <div className="text-gray-500 dark:text-gray-400 text-sm">PPA</div>
-            <div className="text-gray-900 dark:text-white">${formatNumberWithCommas(pps || 0)}</div>
+            <div className="text-gray-900 dark:text-white">{formatCurrencySymbol(locale)}{formatNumberLocale(pps || 0, locale)}</div>
           </div>
         )}
         
         {shareholder.shares && (
           <div>
             <div className="text-gray-500 dark:text-gray-400 text-sm">{t('label.shares')}???</div>
-            <div className="text-gray-900 dark:text-white">{formatNumberWithCommas(shareholder.shares || 0)}</div>
+            <div className="text-gray-900 dark:text-white">{formatNumberLocale(shareholder.shares || 0, locale)}</div>
           </div>
         )}
         
@@ -82,7 +92,7 @@ const CapTableCardItem: React.FC<CapTableRowItemProps> = ({shareholder, change})
 
 // Total card for all screen sizes
 const TotalCard: React.FC<{totalRow: TotalCapTableRow}> = ({totalRow}) => {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   return (
     <div className="w-full max-w-full sm:max-w-[960px] mx-auto mb-4 p-4 bg-gray-100 dark:bg-gray-900 rounded-lg border-2 border-gray-300 dark:border-gray-700">
       <div className="font-bold text-gray-900 dark:text-white mb-3">Total</div>
@@ -90,7 +100,7 @@ const TotalCard: React.FC<{totalRow: TotalCapTableRow}> = ({totalRow}) => {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div>
           <div className="text-gray-500 dark:text-gray-400 text-sm">{t('capTable.investment')}</div>
-          <div className="text-gray-900 dark:text-white">${formatNumberWithCommas(totalRow.investment)}</div>
+          <div className="text-gray-900 dark:text-white">{formatCurrencySymbol(locale)}{formatNumberLocale(totalRow.investment, locale)}</div>
         </div>
         
         <div>
@@ -100,7 +110,7 @@ const TotalCard: React.FC<{totalRow: TotalCapTableRow}> = ({totalRow}) => {
         
         <div>
           <div className="text-gray-500 dark:text-gray-400 text-sm">{t('label.shares')}</div>
-          <div className="text-gray-900 dark:text-white">{formatNumberWithCommas(totalRow.shares ?? 0)}</div>
+          <div className="text-gray-900 dark:text-white">{formatNumberLocale(totalRow.shares ?? 0, locale)}</div>
         </div>
         
         <div>
@@ -114,7 +124,18 @@ const TotalCard: React.FC<{totalRow: TotalCapTableRow}> = ({totalRow}) => {
 
 // Desktop table view
 const CapTableDesktopView: React.FC<CapTableProps> = ({ rows, changes, totalRow }) => {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
+  
+  // Translate special shareholder names
+  const getDisplayName = (name: string) => {
+    if (name === "Issued Options") {
+      return t('shareholder.issuedOptions');
+    } else if (name === "Unused Options Pool") {
+      return t('shareholder.unusedPool');
+    }
+    return name;
+  };
+  
   return (
     <div className="w-full max-w-full sm:max-w-[960px] mx-auto overflow-x-auto">
       <table className="w-full border-collapse">
@@ -145,15 +166,15 @@ const CapTableDesktopView: React.FC<CapTableProps> = ({ rows, changes, totalRow 
             
             return (
               <tr key={`captablerow-${idx}`} className="border-b border-gray-200 dark:border-gray-700">
-                <td className="p-3 font-medium text-gray-900 dark:text-white">{shareholder.name}</td>
+                <td className="p-3 font-medium text-gray-900 dark:text-white">{getDisplayName(shareholder.name)}</td>
                 <td className="p-3 text-right text-gray-900 dark:text-white">
-                  {investment !== null ? `$${formatNumberWithCommas(investment || 0)}` : "-"}
+                  {investment !== null ? `${formatCurrencySymbol(locale)}${formatNumberLocale(investment || 0, locale)}` : "-"}
                 </td>
                 <td className="p-3 text-right text-gray-900 dark:text-white">
-                  {pps !== null ? `$${formatNumberWithCommas(pps || 0)}` : "-"}
+                  {pps !== null ? `${formatCurrencySymbol(locale)}${formatNumberLocale(pps || 0, locale)}` : "-"}
                 </td>
                 <td className="p-3 text-right text-gray-900 dark:text-white">
-                  {shareholder.shares ? formatNumberWithCommas(shareholder.shares) : "-"}
+                  {shareholder.shares ? formatNumberLocale(shareholder.shares, locale) : "-"}
                 </td>
                 <td className="p-3 text-right">
                   <div className="flex items-center justify-end">
@@ -173,9 +194,9 @@ const CapTableDesktopView: React.FC<CapTableProps> = ({ rows, changes, totalRow 
           {/* Total row */}
           <tr className="bg-gray-100 dark:bg-gray-800 font-bold">
             <td className="p-3 text-gray-900 dark:text-white">Total</td>
-            <td className="p-3 text-right text-gray-900 dark:text-white">${formatNumberWithCommas(totalRow.investment)}</td>
+            <td className="p-3 text-right text-gray-900 dark:text-white">{formatCurrencySymbol(locale)}{formatNumberLocale(totalRow.investment, locale)}</td>
             <td className="p-3 text-right text-gray-900 dark:text-white">-</td>
-            <td className="p-3 text-right text-gray-900 dark:text-white">{formatNumberWithCommas(totalRow.shares ?? 0)}</td>
+            <td className="p-3 text-right text-gray-900 dark:text-white">{formatNumberLocale(totalRow.shares ?? 0, locale)}</td>
             <td className="p-3 text-right text-gray-900 dark:text-white">{(totalRow.ownershipPct * 100).toFixed(2)}%</td>
           </tr>
         </tbody>

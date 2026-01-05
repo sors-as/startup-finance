@@ -183,6 +183,18 @@ export const translations = {
 
   // Priced Round
   'pricedRound.overview': 'Priced Round Overview',
+  'pricedRound.pps': 'PPS',
+  'pricedRound.ppsTooltip': 'PPS: The Price Per Share (PPS) in a round is calculated by dividing the pre-money valuation by number of pre-money shares',
+  'pricedRound.newSharesIssued': 'New Shares Issued',
+  'pricedRound.additionalOptions': 'Additional Options',
+  'pricedRound.additionalOptionsTooltip': 'Additional Options: these are the options created as part of the round to expand the option table.',
+  'pricedRound.totalRoundDilution': 'Total Round Dilution',
+  'pricedRound.totalRoundDilutionTooltip': 'Total Round Dilution: the percentage reduction in ownership for existing shareholders from a round, calculated as the number of new shares being issued from the transaction divided by the fully diluted shares after the transaction',
+  'pricedRound.preMoney': 'Pre Money',
+  'pricedRound.investment': 'Investment',
+  'pricedRound.postMoney': 'Post Money',
+  'pricedRound.targetOptions': 'Target Options',
+  'pricedRound.targetOptionsTooltip': 'The target percentage of the new options pool, after the priced round',
   
   // Labels
   'label.name': 'Name',

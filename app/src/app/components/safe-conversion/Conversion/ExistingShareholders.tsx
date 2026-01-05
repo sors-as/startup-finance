@@ -31,6 +31,17 @@ const ExistingShareholderRow: React.FC<ExistingShareholderRowProps> = ({
   isReadOnly = false,
 }) => {
   const { t } = useTranslation();
+  
+  // Translate special shareholder names
+  const getDisplayName = () => {
+    if (data.id === "IssuedOptions") {
+      return t('shareholder.issuedOptions');
+    } else if (data.id === "UnusedOptionsPool") {
+      return t('shareholder.unusedPool');
+    }
+    return data.name;
+  };
+  
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -98,14 +109,14 @@ const ExistingShareholderRow: React.FC<ExistingShareholderRowProps> = ({
         <div className="mb-3 md:mb-0 md:flex-1">
           {disableNameEdit ? (
             <span className="ml-2 inline-block font-bold text-gray-900 dark:text-white">
-              {data.name} {getTooltipButton()}
+              {getDisplayName()} {getTooltipButton()}
             </span>
           ) : (
             <div>
               <div className="text-gray-500 dark:text-gray-400 mb-1">{t('label.name')}</div>
               {isReadOnly ? (
                 <div className="px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded border border-gray-200 dark:border-gray-600">
-                  {data.name}
+                  {getDisplayName()}
                 </div>
               ) : (
                 <Input
