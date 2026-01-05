@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { formatNumberWithCommas } from "@library/utils/numberFormatting";
+import { formatNumberLocale, formatCurrencySymbol } from "@library/utils/numberFormatting";
 import CurrencyInput from "react-currency-input-field";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -42,7 +42,7 @@ const SAFEInputRow: React.FC<SAFEInputRowProps> = ({
   onDrop,
   isReadOnly = false,
 }) => {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -143,7 +143,7 @@ const SAFEInputRow: React.FC<SAFEInputRowProps> = ({
           </div>
           {data.disabledFields?.includes("investment") || isReadOnly ? (
             <div className="px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded border border-gray-200 dark:border-gray-600">
-              ${formatNumberWithCommas(data.investment)}
+              {formatCurrencySymbol(locale)}{formatNumberLocale(data.investment, locale)}
             </div>
           ) : (
             <CurrencyInput
@@ -154,7 +154,7 @@ const SAFEInputRow: React.FC<SAFEInputRowProps> = ({
               placeholder={t('capTable.investment')}
               autoComplete="off"
               className="w-full bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
-              prefix="$"
+              prefix={formatCurrencySymbol(locale)}
               allowDecimals={false}
               customInput={Input}
             />
@@ -165,7 +165,7 @@ const SAFEInputRow: React.FC<SAFEInputRowProps> = ({
           <div className="text-gray-500 dark:text-gray-400 mb-1">{t('label.valCap')}</div>
           {data.disabledFields?.includes("cap") || isReadOnly ? (
             <div className="px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded border border-gray-200 dark:border-gray-600">
-              ${formatNumberWithCommas(Math.round(data.cap ?? 0))}
+              {formatCurrencySymbol(locale)}{formatNumberLocale(Math.round(data.cap ?? 0), locale)}
             </div>
           ) : (
             <CurrencyInput
@@ -176,7 +176,7 @@ const SAFEInputRow: React.FC<SAFEInputRowProps> = ({
               placeholder={t('label.valCap')}
               autoComplete="off"
               className="w-full bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
-              prefix="$"
+              prefix={formatCurrencySymbol(locale)}
               decimalScale={0}
               allowDecimals={true}
               customInput={Input}
