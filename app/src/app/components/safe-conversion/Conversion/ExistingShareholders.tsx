@@ -33,11 +33,12 @@ const ExistingShareholderRow: React.FC<ExistingShareholderRowProps> = ({
   const { t } = useTranslation();
   
   // Get the translated display name for special shareholders
-  const displayName = data.id === "IssuedOptions" 
-    ? t('shareholder.issuedOptions') 
-    : data.id === "UnusedOptionsPool" 
-    ? t('shareholder.unusedPool') 
-    : data.name;
+  let displayName = data.name;
+  if (data.id === "IssuedOptions") {
+    displayName = t('shareholder.issuedOptions');
+  } else if (data.id === "UnusedOptionsPool") {
+    displayName = t('shareholder.unusedPool');
+  }
   
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
