@@ -38,12 +38,14 @@ const CapTableCardItem: React.FC<CapTableRowItemProps> = ({shareholder, change})
   
   // Translate special shareholder names
   const getDisplayName = () => {
-    if (shareholder.name === "Issued Options") {
+    const name = shareholder.name;
+    if (!name) return "";
+    if (name === "Issued Options") {
       return t('shareholder.issuedOptions');
-    } else if (shareholder.name === "Unused Options Pool") {
+    } else if (name === "Unused Options Pool") {
       return t('shareholder.unusedPool');
     }
-    return shareholder.name;
+    return name;
   };
 
   return (
@@ -127,7 +129,8 @@ const CapTableDesktopView: React.FC<CapTableProps> = ({ rows, changes, totalRow 
   const { t, locale } = useTranslation();
   
   // Translate special shareholder names
-  const getDisplayName = (name: string) => {
+  const getDisplayName = (name: string | undefined) => {
+    if (!name) return "";
     if (name === "Issued Options") {
       return t('shareholder.issuedOptions');
     } else if (name === "Unused Options Pool") {
