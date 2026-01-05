@@ -6,6 +6,7 @@ declare namespace Cloudflare {
 		WORKSHEET_COORDINATOR: DurableObjectNamespace<import("./src/index").WorksheetCoordinatorDurableObject>;
 		DB: D1Database;
 		ASSETS: Fetcher;
+		RESEND_API_KEY: string;
 	}
 }
 interface Env extends Cloudflare.Env {}

@@ -2,6 +2,7 @@ import holdingHtml from "./pages/holding.html";
 import dashboardHtml from "./pages/dashboard.html";
 import demoHtml from "./pages/demo.html";
 import { decompressState, isLegacyHash } from "./utils/stateCompression";
+import { sendCapTableEmail, checkRateLimit, recordEmailSend, validateEmails } from "./utils/emailService";
 
 interface WorksheetData {
 	id: string;
@@ -509,6 +510,120 @@ async function handleLegacyConversion(request: Request, env: Env): Promise<Respo
 	}
 }
 
+async function handleSendEmail(request: Request, env: Env, compositeId: string): Promise<Response> {
+	const corsHeaders = {
+		"Access-Control-Allow-Origin": "*",
+		"Access-Control-Allow-Methods": "POST, OPTIONS",
+		"Access-Control-Allow-Headers": "Content-Type",
+	};
+
+	const parsedId = parseCompositeId(compositeId);
+	if (!parsedId) {
+		return new Response(JSON.stringify({ error: "Invalid ID format" }), {
+			status: 400,
+			headers: { ...corsHeaders, "Content-Type": "application/json" },
+		});
+	}
+
+	const { id } = parsedId;
+
+	try {
+		// Parse request body
+		const body = await request.json() as {
+			recipients: string[];
+			senderMessage?: string;
+		};
+
+		// Validate recipients
+		const validation = validateEmails(body.recipients);
+		if (!validation.valid) {
+			return new Response(JSON.stringify({ 
+				error: "Invalid email addresses",
+				invalidEmails: validation.invalidEmails
+			}), {
+				status: 400,
+				headers: { ...corsHeaders, "Content-Type": "application/json" }
+			});
+		}
+
+		// Check rate limit
+		const rateLimit = await checkRateLimit(env.DB, id);
+		if (!rateLimit.allowed) {
+			return new Response(JSON.stringify({ 
+				error: "Rate limit exceeded. Maximum 5 emails per worksheet per hour.",
+				remainingEmails: rateLimit.remainingEmails
+			}), {
+				status: 429,
+				headers: { ...corsHeaders, "Content-Type": "application/json" }
+			});
+		}
+
+		// Get worksheet data from D1
+		const worksheet = await env.DB.prepare(
+			"SELECT id, worksheet_data FROM finance_worksheets WHERE id = ?"
+		).bind(id).first<{ id: string; worksheet_data: string }>();
+
+		if (!worksheet) {
+			return new Response(JSON.stringify({ error: "Worksheet not found" }), {
+				status: 404,
+				headers: { ...corsHeaders, "Content-Type": "application/json" }
+			});
+		}
+
+		const worksheetData = JSON.parse(worksheet.worksheet_data);
+		const worksheetName = worksheetData.name || "Untitled Worksheet";
+
+		// Generate read-only URL
+		const origin = new URL(request.url).origin;
+		const readOnlyUrl = `${origin}/#${id}`;
+
+		// Send email via Resend
+		const emailResult = await sendCapTableEmail(
+			{
+				recipients: body.recipients,
+				worksheetName,
+				worksheetData,
+				readOnlyUrl,
+				senderMessage: body.senderMessage,
+				// TODO: Add cap table data when we have the calculation logic
+				preRoundCapTable: undefined,
+				postRoundCapTable: undefined,
+			},
+			env.RESEND_API_KEY
+		);
+
+		if (!emailResult.success) {
+			return new Response(JSON.stringify({ 
+				error: emailResult.error 
+			}), {
+				status: 500,
+				headers: { ...corsHeaders, "Content-Type": "application/json" }
+			});
+		}
+
+		// Record the email send
+		await recordEmailSend(env.DB, id, body.recipients, emailResult.messageId || '');
+
+		return new Response(JSON.stringify({ 
+			success: true,
+			messageId: emailResult.messageId,
+			remainingEmails: rateLimit.remainingEmails - 1
+		}), {
+			status: 200,
+			headers: { ...corsHeaders, "Content-Type": "application/json" }
+		});
+
+	} catch (error) {
+		console.error("Error in send email handler:", error);
+		return new Response(JSON.stringify({ 
+			error: error instanceof Error ? error.message : "Failed to send email" 
+		}), {
+			status: 500,
+			headers: { ...corsHeaders, "Content-Type": "application/json" }
+		});
+	}
+}
+
 async function handlePut(request: Request, env: Env, compositeId: string): Promise<Response> {
 	const corsHeaders = {
 		"Access-Control-Allow-Origin": "*",
@@ -695,6 +810,11 @@ export default {
 				const durableObjectId = env.WORKSHEET_COORDINATOR.idFromName(parsedId.id);
 				const durableObjectStub = env.WORKSHEET_COORDINATOR.get(durableObjectId);
 				return durableObjectStub.fetch(request);
+			}
+
+			// Handle send email endpoint
+			if (subPath === "send-email" && request.method === "POST") {
+				return handleSendEmail(request, env, compositeId);
 			}
 
 			// Handle regular API requests
