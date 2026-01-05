@@ -15,8 +15,6 @@ export interface SendEmailResponse {
 	invalidEmails?: string[];
 }
 
-const backendService = BackendService.getInstance();
-
 /**
  * Send cap table email to recipients
  */
