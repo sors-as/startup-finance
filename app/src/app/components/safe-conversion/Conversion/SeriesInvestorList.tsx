@@ -29,7 +29,7 @@ const SeriesInvestorRow: React.FC<SeriesRowProps> = ({
   onUpdate,
   isReadOnly = false,
 }) => {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {

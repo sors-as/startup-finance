@@ -31,7 +31,7 @@ const ExistingShareholderRow: React.FC<ExistingShareholderRowProps> = ({
   disableNameEdit,
   isReadOnly = false,
 }) => {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   
   // Get the translated display name for special shareholders
   let displayName = data.name;
