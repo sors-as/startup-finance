@@ -9,7 +9,7 @@ compatibility_date = "2025-06-20"
 
 [[migrations]]
 tag = "v1"	
-new_classes = [ "WorksheetCoordinatorDurableObject" ]	
+new_sqlite_classes = [ "WorksheetCoordinatorDurableObject" ]	
 
 # Production Durable Objects configuration
 [durable_objects]
