@@ -1,12 +1,15 @@
 # Production environment configuration
-name = "1984-startup-finance-worker"
+name = "sors-startup-finance-worker"
 main = "src/index.ts"
 compatibility_date = "2025-06-20"
 
-# Migrations for Durable Objects (matches existing production)
+# [[migrations]]
+# tag = "v4"
+# added_classes = ["WorksheetCoordinatorDurableObject"]
+
 [[migrations]]
-tag = "v3"
-deleted_classes = ["JSONObjectStore"]
+tag = "v1"	
+new_classes = [ "WorksheetCoordinatorDurableObject" ]	
 
 # Production Durable Objects configuration
 [durable_objects]
@@ -16,9 +19,9 @@ bindings = [
 
 # Production D1 database configuration
 [[d1_databases]]
-binding = "DB"
+binding = "startup_finance_worksheets"
 database_name = "startup-finance-worksheets"
-database_id = "145206fd-2992-47a3-96e8-b420b4611a7a"  # Existing production database
+database_id = "9c61842d-048e-49fb-9dd4-bc5ebf9ae6e9"
 
 # Static assets
 [assets]
