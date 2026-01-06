@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import WorksheetContainer from "./WorksheetContainer";
-import { BRANDING } from '@config/branding';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { LanguagePicker } from '@/components/LanguagePicker';

@@ -52,3 +52,6 @@ app/dist/
 worker/public/assets/
 worker/public/index.html
 worker/public/vite.svg
+worker/public/robots.txt
+worker/public/site.webmanifest
+worker/public/sitemap.xml

@@ -7,10 +7,10 @@ import { useTranslation } from "@config/i18n";
 
 interface SendEmailButtonProps {
   worksheetId?: string;
-  worksheetName: string;
+  worksheetName?: string;
 }
 
-const SendEmailButton: React.FC<SendEmailButtonProps> = ({ worksheetId, worksheetName }) => {
+const SendEmailButton: React.FC<SendEmailButtonProps> = ({ worksheetId }) => {
   const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
   const [recipients, setRecipients] = useState("");
