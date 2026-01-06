@@ -19,7 +19,7 @@ bindings = [
 
 # Production D1 database configuration
 [[d1_databases]]
-binding = "startup_finance_worksheets"
+binding = "DB"
 database_name = "startup-finance-worksheets"
 database_id = "9c61842d-048e-49fb-9dd4-bc5ebf9ae6e9"
 

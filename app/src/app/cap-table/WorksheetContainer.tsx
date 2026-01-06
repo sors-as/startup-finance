@@ -332,14 +332,35 @@ const WorksheetContainer: React.FC<WorksheetContainerProps> = ({ onCreateNew }) 
     <div>
       {/* Error notification */}
       {stateStatus.error && (
-        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 bg-red-500 text-white px-4 py-2 rounded-lg z-50">
-          {stateStatus.error}
-          <button
-            onClick={clearError}
-            className="ml-2 text-white hover:text-gray-200"
-          >
-            ×
-          </button>
+        <div 
+          className="fixed top-4 left-1/2 transform -translate-x-1/2 max-w-2xl bg-red-500 text-white px-6 py-4 rounded-lg shadow-lg z-50"
+          role="alert"
+        >
+          <div className="flex items-start">
+            <div className="flex-shrink-0">
+              <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div className="ml-3 flex-1">
+              <h3 className="text-sm font-medium">Error</h3>
+              <div className="mt-2 text-sm">
+                <p>{stateStatus.error}</p>
+                <p className="mt-2 text-xs opacity-90">
+                  Check the browser console (F12) for more details, or try refreshing the page.
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={clearError}
+              className="ml-4 flex-shrink-0 text-white hover:text-gray-200 focus:outline-none"
+              aria-label="Close error"
+            >
+              <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </button>
+          </div>
         </div>
       )}
 
@@ -426,11 +447,11 @@ function getBackendUrl(): string {
   if (import.meta.env.DEV) {
     return import.meta.env.VITE_USE_LOCAL_WORKER === 'true' 
       ? 'http://localhost:8787' 
-      : 'https://1984-startup-finance-worker.mdp-005.workers.dev';
+      : 'https://sors-startup-finance-worker.morten-helgaland.workers.dev';
   }
   
   // Priority 4: Default production worker
-  return 'https://1984-startup-finance-worker.mdp-005.workers.dev';
+  return 'https://sors-startup-finance-worker.morten-helgaland.workers.dev';
 }
 
 export default WorksheetContainer;
