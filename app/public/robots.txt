@@ -1,0 +1,8 @@
+# Robots.txt for SORS Finanskalkulator
+# Allow all search engines to crawl the site
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://sors.no/verktoy/finanskalkulator/sitemap.xml
