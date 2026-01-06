@@ -335,7 +335,7 @@ const WorksheetContainer: React.FC<WorksheetContainerProps> = ({ onCreateNew }) 
         <div className="fixed top-4 left-1/2 transform -translate-x-1/2 max-w-2xl bg-red-500 text-white px-6 py-4 rounded-lg shadow-lg z-50">
           <div className="flex items-start">
             <div className="flex-shrink-0">
-              <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
@@ -351,8 +351,9 @@ const WorksheetContainer: React.FC<WorksheetContainerProps> = ({ onCreateNew }) 
             <button
               onClick={clearError}
               className="ml-4 flex-shrink-0 text-white hover:text-gray-200 focus:outline-none"
+              aria-label="Close error"
             >
-              <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
               </svg>
             </button>

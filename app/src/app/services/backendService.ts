@@ -42,6 +42,11 @@ export interface BackendResponse {
   lastModified: string;
 }
 
+interface BackendErrorResponse {
+  error?: string;
+  message?: string;
+}
+
 interface WebSocketConnection {
   ws: WebSocket;
   url: string;
@@ -147,9 +152,11 @@ export class BackendService {
         // Try to get detailed error from response body
         let errorMessage = response.statusText;
         try {
-          const errorData = await response.json();
+          const errorData: BackendErrorResponse = await response.json();
           if (errorData.error) {
             errorMessage = errorData.error;
+          } else if (errorData.message) {
+            errorMessage = errorData.message;
           }
           console.error('❌ Backend error details:', errorData);
         } catch (e) {
@@ -189,9 +196,11 @@ export class BackendService {
         // Try to get detailed error from response body
         let errorMessage = response.statusText;
         try {
-          const errorData = await response.json();
+          const errorData: BackendErrorResponse = await response.json();
           if (errorData.error) {
             errorMessage = errorData.error;
+          } else if (errorData.message) {
+            errorMessage = errorData.message;
           }
           console.error('❌ Backend error details:', errorData);
         } catch (e) {
@@ -211,6 +220,8 @@ export class BackendService {
   }
 
   async updateObject(id: string, editKey: string, data: IConversionStateData): Promise<BackendResponse> {
+    console.log(`💾 Updating object: ${id}`);
+    
     try {
       const response = await fetch(`${BACKEND_URL}/api/objects/${id}-${editKey}`, {
         method: "PUT",
@@ -224,9 +235,11 @@ export class BackendService {
         // Try to get detailed error from response body
         let errorMessage = response.statusText;
         try {
-          const errorData = await response.json();
+          const errorData: BackendErrorResponse = await response.json();
           if (errorData.error) {
             errorMessage = errorData.error;
+          } else if (errorData.message) {
+            errorMessage = errorData.message;
           }
           console.error('❌ Backend error details:', errorData);
         } catch (e) {
@@ -237,6 +250,7 @@ export class BackendService {
         throw new Error(`Failed to update object (${response.status}): ${errorMessage}`);
       }
       
+      console.log(`✅ Successfully updated object ${id}`);
       return response.json();
     } catch (error) {
       console.error('❌ Error updating object:', error);
@@ -488,9 +502,11 @@ export class BackendService {
         // Try to get detailed error from response body
         let errorMessage = response.statusText;
         try {
-          const errorData = await response.json();
+          const errorData: BackendErrorResponse = await response.json();
           if (errorData.error) {
             errorMessage = errorData.error;
+          } else if (errorData.message) {
+            errorMessage = errorData.message;
           }
           console.error('❌ Backend error details:', errorData);
         } catch (e) {
