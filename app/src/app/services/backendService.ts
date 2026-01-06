@@ -23,13 +23,13 @@ const getBackendUrl = () => {
     // In development mode, check if we want to use local worker
     const url = import.meta.env.VITE_USE_LOCAL_WORKER === 'true' 
       ? 'http://localhost:8787' 
-      : 'https://1984-startup-finance-worker.mdp-005.workers.dev';
+      : 'https://sors-startup-finance-worker.morten-helgaland.workers.dev';
     console.log(`🔗 Using development backend URL: ${url}`);
     return url;
   }
   
   // Priority 4: Default production worker
-  const defaultUrl = 'https://1984-startup-finance-worker.mdp-005.workers.dev';
+  const defaultUrl = 'https://sors-startup-finance-worker.morten-helgaland.workers.dev';
   console.log(`🔗 Using default backend URL: ${defaultUrl}`);
   return defaultUrl;
 };

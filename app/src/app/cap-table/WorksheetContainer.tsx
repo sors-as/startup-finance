@@ -447,11 +447,11 @@ function getBackendUrl(): string {
   if (import.meta.env.DEV) {
     return import.meta.env.VITE_USE_LOCAL_WORKER === 'true' 
       ? 'http://localhost:8787' 
-      : 'https://1984-startup-finance-worker.mdp-005.workers.dev';
+      : 'https://sors-startup-finance-worker.morten-helgaland.workers.dev';
   }
   
   // Priority 4: Default production worker
-  return 'https://1984-startup-finance-worker.mdp-005.workers.dev';
+  return 'https://sors-startup-finance-worker.morten-helgaland.workers.dev';
 }
 
 export default WorksheetContainer;
