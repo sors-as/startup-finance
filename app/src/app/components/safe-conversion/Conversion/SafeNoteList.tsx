@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { formatNumberLocale, formatCurrencySymbol } from "@library/utils/numberFormatting";
+import { formatNumberLocale, formatCurrencySymbol, getIntlConfig, getNumberSeparators } from "@library/utils/numberFormatting";
 import CurrencyInput from "react-currency-input-field";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -157,6 +157,7 @@ const SAFEInputRow: React.FC<SAFEInputRowProps> = ({
               prefix={formatCurrencySymbol(locale)}
               allowDecimals={false}
               customInput={Input}
+              intlConfig={getIntlConfig(locale)}
             />
           )}
         </div>
@@ -180,6 +181,7 @@ const SAFEInputRow: React.FC<SAFEInputRowProps> = ({
               decimalScale={0}
               allowDecimals={true}
               customInput={Input}
+              intlConfig={getIntlConfig(locale)}
             />
           )}
         </div>
@@ -209,6 +211,7 @@ const SAFEInputRow: React.FC<SAFEInputRowProps> = ({
               maxLength={2}
               allowDecimals={false}
               customInput={Input}
+              {...getNumberSeparators(locale)}
             />
           )}
           {(data.discount ?? 0) > 99 && (

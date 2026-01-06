@@ -6,7 +6,7 @@ import { RowsProps } from "./PropTypes";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { SeriesCapTableRow } from "@library/cap-table/types";
 import { useTranslation } from "@config/i18n";
-import { formatNumberWithDecimals } from "@library/utils/numberFormatting";
+import { formatNumberWithDecimals, formatCurrencySymbol, getIntlConfig } from "@library/utils/numberFormatting";
 
 export type SeriesProps = SeriesCapTableRow & {
   id: string;
@@ -93,10 +93,11 @@ const SeriesInvestorRow: React.FC<SeriesRowProps> = ({
                 ? 'bg-gray-100 dark:bg-gray-600 text-gray-700 dark:text-gray-300' 
                 : 'bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white'
             }`}
-            prefix="$"
+            prefix={formatCurrencySymbol(locale)}
             decimalScale={0}
             customInput={Input}
             readOnly={isReadOnly}
+            intlConfig={getIntlConfig(locale)}
           />
         </div>
 

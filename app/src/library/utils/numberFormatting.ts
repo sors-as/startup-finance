@@ -118,3 +118,21 @@ export const formatNumberWithDecimals = (value: number, decimals: number, locale
     maximumFractionDigits: decimals,
   });
 };
+
+// Get intlConfig for react-currency-input-field based on locale
+// This provides proper thousand separator and decimal separator formatting for currency fields
+export const getIntlConfig = (locale: string) => {
+  if (locale === 'nb-NO' || locale === 'no') {
+    return { locale: 'nb-NO', currency: 'NOK' };
+  }
+  return { locale: 'en-US', currency: 'USD' };
+};
+
+// Get separator configuration for react-currency-input-field based on locale
+// Use this for number fields that shouldn't display currency symbols
+export const getNumberSeparators = (locale: string) => {
+  if (locale === 'nb-NO' || locale === 'no') {
+    return { groupSeparator: ' ', decimalSeparator: ',' };
+  }
+  return { groupSeparator: ',', decimalSeparator: '.' };
+};
