@@ -2,7 +2,7 @@
   "name": "SORS Finanskalkulator",
   "short_name": "SORS Finans",
   "description": "Gratis cap table kalkulator for oppstartsselskaper. Modeller SLIP-avtaler og finansieringsrunder.",
-  "start_url": "/",
+  "start_url": "/verktoy/finanskalkulator/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
