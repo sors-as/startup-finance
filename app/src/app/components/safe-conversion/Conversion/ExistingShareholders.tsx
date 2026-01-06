@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import QuestionMarkTooltipComponent from "@/components/tooltip/QuestionMarkTooltip";
 import { CommonCapTableRow } from "@library/cap-table/types";
 import { useTranslation } from "@config/i18n";
-import { formatNumberLocale, formatNumberWithDecimals, getIntlConfig, getNumberSeparators } from "@library/utils/numberFormatting";
+import { formatNumberLocale, formatNumberWithDecimals, getNumberSeparators } from "@library/utils/numberFormatting";
 
 export type ExistingShareholderProps = CommonCapTableRow & {
   // We need to ensure we can identify the row when updating or deleting
