@@ -156,7 +156,9 @@ export const translations = {
   
   // Cap table sections
   'capTable.existing': 'Existing Cap Table',
+  'capTable.existing.description': 'Enter the current owners, the starting point for the calculations. If there are no plans for an options program, just put 0 in those fields.',
   'capTable.slips': 'SLIP Investors',
+  'capTable.slips.description': 'This is where you add your SLIP (Startuplabs norwegian version of SAFE) investors. You can add multiple SLIP\'s with different terms. The conversion will be calculated based on the Valuation Cap and Discount entered for each SLIP. Convertible Loans go here.',
   'capTable.conversion': 'Priced Round Conversion',
   'capTable.addSlip': 'Add SLIP',
   'capTable.targetOptionsPool': 'Target Options Pool %',

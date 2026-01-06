@@ -248,7 +248,8 @@ const Worksheet: React.FC<WorksheetProps> = ({
       </div>
 
 
-      <h1 className="text-2xl font-bold mb-12 pl-2">1&#41;  {t('capTable.existing')}</h1>
+      <h1 className="text-2xl font-bold pl-2">1&#41;  {t('capTable.existing')}</h1>
+      <h2 className="text-md mb-12">{t('capTable.existing.description')}</h2>
       <div>
         <ExisingShareholderList
           rows={getCommonOnlyCapTable(conversionState)}
@@ -264,7 +265,8 @@ const Worksheet: React.FC<WorksheetProps> = ({
           isReadOnly={isReadOnly}
         />
       </div>
-      <h1 className="text-2xl font-bold mb-12 mt-24 pl-2">2&#41; {t('capTable.slips')}</h1>
+      <h1 className="text-2xl font-bold mt-24 pl-2">2&#41; {t('capTable.slips')}</h1>
+      <h2 className="text-md mb-12">{t('capTable.slips.description')}</h2>
       <div>
         <SafeNoteList
           rows={getSAFERowPropsSelector(conversionState)}

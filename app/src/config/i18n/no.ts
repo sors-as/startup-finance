@@ -156,7 +156,9 @@ export const translations = {
   
   // Cap table sections
   'capTable.existing': 'Eksisterende Cap Table',
+  'capTable.existing.description': 'Her setter du inn dagens eiere, startpunktet for beregningen. Hvis du ikke har eller vil ha et opsjonsprogram setter du bare 0 i de feltene',
   'capTable.slips': 'SLIP-investorer',
+  'capTable.slips.description': 'Her legger du inn de SLIP investorene du tenker på. SLIP er Startuplab sin kontrakt for investering før en priset investeringsrunde. Du kan legge til forskjellige betingelser som verdsettelsestak og rabatt og konverteringen blir da korrekt kalkulert. Her legger du også inn vanlige konvertible lån.',
   'capTable.conversion': 'Priset runde-konvertering',
   'capTable.addSlip': 'Legg til SLIP',
   'capTable.targetOptionsPool': 'Målsatt opsjonsprogram %',
