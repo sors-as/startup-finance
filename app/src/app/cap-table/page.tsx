@@ -70,21 +70,6 @@ const Page: React.FC = () => {
       <Header />
       
       <main className="flex-grow flex flex-col items-center justify-between py-8">
-        {/* Breadcrumb and Heading */}
-        <div className="z-10 w-full max-w-5xl mb-6 px-2">
-          <div className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-            <a
-              className="hover:text-sors-primary dark:hover:text-sors-light-blue"
-              href={BRANDING.toolsUrl}
-            >
-              {BRANDING.content.breadcrumbHome}
-            </a>{" "}
-            &gt; <span>{BRANDING.content.breadcrumbCurrent}</span>
-          </div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-            {BRANDING.siteName}
-          </h1>
-        </div>
 
         {/* WorksheetContainer handles all the complex logic */}
         <WorksheetContainer onCreateNew={createNewState} />

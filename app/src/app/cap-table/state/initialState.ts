@@ -62,16 +62,6 @@ export const initialState = ({
       cap: 125_000 / 0.07,
       conversionType: "post",
     },
-    // Uncapped Antler MFN SLIP (Cap to best cap of all slips)
-    {
-      id: getID(),
-      type: CapTableRowType.Safe,
-      name: "Antler MFN",
-      investment: 375_000,
-      discount: 0,
-      cap: 10_000_000,
-      conversionType: "mfn",
-    },
     {
       id: getID(),
       type: CapTableRowType.Safe,

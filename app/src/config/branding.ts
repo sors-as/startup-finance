@@ -1,12 +1,12 @@
 export const BRANDING = {
   // Company information
-  companyName: "SORS",
-  siteName: "SORS Finanskalkulator",
+  companyName: "Sors",
+  siteName: "Sors Finanskalkulator",
   siteDescription: "Gratis cap table kalkulator for oppstartsselskaper",
   
   // URLs
   website: "https://sors.no",
-  toolsUrl: "https://sors.no/verktoy",
+  toolsUrl: "https://finance.sors.no/",
   docsUrl: "https://sors.no/hjelp",
   contactEmail: "kontakt@sors.no",
   githubUrl: "https://github.com/1984vc/startup-finance",

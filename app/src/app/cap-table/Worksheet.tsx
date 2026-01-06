@@ -166,7 +166,7 @@ const Worksheet: React.FC<WorksheetProps> = ({
             ) : (
               <div className="flex items-center gap-2 group">
                 <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white break-words">
-                  {name || t('worksheet.untitled')}
+                  {name || t('worksheet.untitled')} AS
                 </h1>
                 {!isReadOnly && (
                   <button

@@ -26,16 +26,16 @@ export function Header() {
             <a href={BRANDING.website} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
               Hjem
             </a>
-            <a href={`${BRANDING.website}/tjenester`} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            <a href={`${BRANDING.website}/services`} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
               Tjenester
             </a>
             <a href={BRANDING.toolsUrl} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
               Verktøy
             </a>
-            <a href={`${BRANDING.website}/om-oss`} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            <a href={`${BRANDING.website}/about`} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
               Om oss
             </a>
-            <a href={`${BRANDING.website}/kontakt`} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            <a href={`${BRANDING.website}/contact`} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
               Kontakt
             </a>
           </nav>
@@ -60,16 +60,16 @@ export function Header() {
               <a href={BRANDING.website} className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 Hjem
               </a>
-              <a href={`${BRANDING.website}/tjenester`} className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              <a href={`${BRANDING.website}/services`} className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 Tjenester
               </a>
               <a href={BRANDING.toolsUrl} className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 Verktøy
               </a>
-              <a href={`${BRANDING.website}/om-oss`} className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              <a href={`${BRANDING.website}/about`} className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 Om oss
               </a>
-              <a href={`${BRANDING.website}/kontakt`} className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              <a href={`${BRANDING.website}/contact`} className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 Kontakt
               </a>
             </div>

@@ -32,7 +32,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href={`${BRANDING.website}/tjenester`} className="text-gray-300 hover:text-blue-400 transition-colors">
+                <a href={`${BRANDING.website}/services`} className="text-gray-300 hover:text-blue-400 transition-colors">
                   Tjenester
                 </a>
               </li>
@@ -42,12 +42,12 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href={`${BRANDING.website}/om-oss`} className="text-gray-300 hover:text-blue-400 transition-colors">
+                <a href={`${BRANDING.website}/about`} className="text-gray-300 hover:text-blue-400 transition-colors">
                   Om oss
                 </a>
               </li>
               <li>
-                <a href={`${BRANDING.website}/kontakt`} className="text-gray-300 hover:text-blue-400 transition-colors">
+                <a href={`${BRANDING.website}/contact`} className="text-gray-300 hover:text-blue-400 transition-colors">
                   Kontakt
                 </a>
               </li>
