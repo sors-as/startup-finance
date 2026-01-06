@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import QuestionMarkTooltipComponent from "@/components/tooltip/QuestionMarkTooltip";
 import { CommonCapTableRow } from "@library/cap-table/types";
 import { useTranslation } from "@config/i18n";
+import { formatNumberLocale, formatNumberWithDecimals } from "@library/utils/numberFormatting";
 
 export type ExistingShareholderProps = CommonCapTableRow & {
   // We need to ensure we can identify the row when updating or deleting
@@ -30,7 +31,16 @@ const ExistingShareholderRow: React.FC<ExistingShareholderRowProps> = ({
   disableNameEdit,
   isReadOnly = false,
 }) => {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
+  
+  // Get the translated display name for special shareholders
+  let displayName = data.name;
+  if (data.id === "IssuedOptions") {
+    displayName = t('shareholder.issuedOptions');
+  } else if (data.id === "UnusedOptionsPool") {
+    displayName = t('shareholder.unusedPool');
+  }
+  
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -98,14 +108,14 @@ const ExistingShareholderRow: React.FC<ExistingShareholderRowProps> = ({
         <div className="mb-3 md:mb-0 md:flex-1">
           {disableNameEdit ? (
             <span className="ml-2 inline-block font-bold text-gray-900 dark:text-white">
-              {data.name} {getTooltipButton()}
+              {displayName} {getTooltipButton()}
             </span>
           ) : (
             <div>
               <div className="text-gray-500 dark:text-gray-400 mb-1">{t('label.name')}</div>
               {isReadOnly ? (
                 <div className="px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded border border-gray-200 dark:border-gray-600">
-                  {data.name}
+                  {displayName}
                 </div>
               ) : (
                 <Input
@@ -126,7 +136,7 @@ const ExistingShareholderRow: React.FC<ExistingShareholderRowProps> = ({
           <div className="text-gray-500 dark:text-gray-400 mb-1">{t('label.shares')}</div>
           {isReadOnly ? (
             <div className="px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded border border-gray-200 dark:border-gray-600">
-              {data.shares?.toLocaleString() || 0}
+              {formatNumberLocale(data.shares || 0, locale)}
             </div>
           ) : (
             <CurrencyInput
@@ -149,7 +159,7 @@ const ExistingShareholderRow: React.FC<ExistingShareholderRowProps> = ({
             {t('label.ownership')} %
           </div>
           <div className="px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded">
-            {(ownership * 100).toFixed(2)}%
+            {formatNumberWithDecimals(ownership * 100, 2, locale)}%
           </div>
         </div>
       </div>

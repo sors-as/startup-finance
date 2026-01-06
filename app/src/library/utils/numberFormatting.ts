@@ -82,3 +82,39 @@ export const shortenedNOK = (value: number | string) => {
     return "kr " + value.toString();
   }
 };
+
+// Locale-aware formatting functions
+export const formatCurrencyLocale = (value: number | string, locale: string) => {
+  if (locale === 'nb-NO' || locale === 'no') {
+    return formatNOKWithCommas(value);
+  }
+  return formatUSDWithCommas(value);
+};
+
+export const formatNumberLocale = (value: number | string, locale: string) => {
+  if (locale === 'nb-NO' || locale === 'no') {
+    return formatNumberWithCommasNO(value);
+  }
+  return formatNumberWithCommas(value);
+};
+
+export const formatCurrencySymbol = (locale: string) => {
+  if (locale === 'nb-NO' || locale === 'no') {
+    return 'kr ';  // Space after kr for Norwegian
+  }
+  return '$';
+};
+
+// Format a number with specific decimal places based on locale
+export const formatNumberWithDecimals = (value: number, decimals: number, locale: string) => {
+  if (locale === 'nb-NO' || locale === 'no') {
+    return value.toLocaleString('nb-NO', {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals,
+    });
+  }
+  return value.toLocaleString('en-US', {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  });
+};

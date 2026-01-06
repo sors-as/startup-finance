@@ -181,8 +181,20 @@ export const translations = {
   'capTable.afterPricedRound': 'Cap Table etter priset runde',
   'capTable.investment': 'Investering',
 
-  //
+  // Priced Round
   'pricedRound.overview': 'Oversikt over kapitalforhøyelse',
+  'pricedRound.pps': 'PPA',
+  'pricedRound.ppsTooltip': 'PPS: Pris per aksje (PPS) i en runde beregnes ved å dele pre-money verdsettelse på antall pre-money aksjer',
+  'pricedRound.newSharesIssued': 'Nye aksjer utstedt',
+  'pricedRound.additionalOptions': 'Tilleggsopsjoner',
+  'pricedRound.additionalOptionsTooltip': 'Tilleggsopsjoner: disse er opsjonene opprettet som en del av runden for å utvide opsjonstabellen.',
+  'pricedRound.totalRoundDilution': 'Total runde-utvanning',
+  'pricedRound.totalRoundDilutionTooltip': 'Total runde-utvanning: prosentvis reduksjon i eierskap for eksisterende aksjonærer fra en runde, beregnet som antall nye aksjer som utstedes fra transaksjonen delt på de fullt utvannede aksjene etter transaksjonen',
+  'pricedRound.preMoney': 'Pre-money',
+  'pricedRound.investment': 'Investering',
+  'pricedRound.postMoney': 'Post-money',
+  'pricedRound.targetOptions': 'Målsatte opsjoner',
+  'pricedRound.targetOptionsTooltip': 'Målprosentandelen av den nye opsjonspoolen, etter den prisede runden',
   
   // Labels
   'label.name': 'Navn',

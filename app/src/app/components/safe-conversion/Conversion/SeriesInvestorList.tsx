@@ -6,6 +6,7 @@ import { RowsProps } from "./PropTypes";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { SeriesCapTableRow } from "@library/cap-table/types";
 import { useTranslation } from "@config/i18n";
+import { formatNumberWithDecimals } from "@library/utils/numberFormatting";
 
 export type SeriesProps = SeriesCapTableRow & {
   id: string;
@@ -28,7 +29,7 @@ const SeriesInvestorRow: React.FC<SeriesRowProps> = ({
   onUpdate,
   isReadOnly = false,
 }) => {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -104,7 +105,7 @@ const SeriesInvestorRow: React.FC<SeriesRowProps> = ({
             {t('label.ownership')} %
           </div>
           <div className="px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded">
-            {data.ownershipPct.toFixed(2)}%
+            {formatNumberWithDecimals(data.ownershipPct, 2, locale)}%
           </div>
         </div>
       </div>

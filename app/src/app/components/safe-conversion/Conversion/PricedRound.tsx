@@ -1,4 +1,4 @@
-import { formatNumberWithCommas } from "@library/utils/numberFormatting";
+import { formatNumberLocale, formatCurrencySymbol, formatNumberWithDecimals } from "@library/utils/numberFormatting";
 import { BestFit } from "@library/conversion-solver";
 import {
   Card,
@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import QuestionMarkTooltipComponent from "@/components/tooltip/QuestionMarkTooltip";
 import { CapTableOwnershipError } from "@library/cap-table/types";
+import { useTranslation } from "@config/i18n";
 
 import { FaMinus, FaPlus } from "react-icons/fa";
 
@@ -46,6 +47,7 @@ const roundFactor = Math.pow(10, 5);
 const quickRound = (num: number) => Math.round(num * roundFactor) / roundFactor;
 
 const PricedRound: React.FC<PricedRoundProps> = (props) => {
+  const { t, locale } = useTranslation();
   const current = props.current;
   const previous = props.previous;
 
@@ -119,25 +121,25 @@ const PricedRound: React.FC<PricedRoundProps> = (props) => {
           <div className="absolute text-nt84bluedarker dark:text-nt84lightblue top-0 right-0 p-2 z-10">
             <QuestionMarkTooltipComponent>
               <div className="max-w-72">
-                PPS: The Price Per Share (PPS) in a round is calculated by
-                dividing the pre-money valuation by number of pre-money shares
+                {t('pricedRound.ppsTooltip')}
               </div>
             </QuestionMarkTooltipComponent>
           </div>
           <CardHeader className="pb-0 text-center">
             <CardTitle className="text-xl font-semibold tracking-tight">
-              ${current.pricedConversion.pps.toFixed(5)}
+              {formatCurrencySymbol(locale)}{formatNumberWithDecimals(current.pricedConversion.pps, 5, locale)}
             </CardTitle>
           </CardHeader>
           <CardContent className="text-center">
             <div className="text-sm font-semibold text-gray-600 dark:text-gray-200">
-              PPS
+              {t('pricedRound.pps')}
             </div>
           </CardContent>
           <div className="text-sm text-gray-600 dark:text-gray-200 bottom-0 z-10 absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             {changes.pps !== 0
-              ? ` (${changes.pps > 0 ? "+" : ""}$${formatNumberWithCommas(
-                  changes.pps
+              ? ` (${changes.pps > 0 ? "+" : ""}${formatCurrencySymbol(locale)}${formatNumberLocale(
+                  changes.pps,
+                  locale
                 )})`
               : ""}
           </div>
@@ -145,19 +147,19 @@ const PricedRound: React.FC<PricedRoundProps> = (props) => {
         <Card className="relative flex flex-col h-26 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
           <CardHeader className="pb-0 text-center">
             <CardTitle className="text-xl font-semibold tracking-tight">
-              {formatNumberWithCommas(current.pricedConversion.newSharesIssued)}
+              {formatNumberLocale(current.pricedConversion.newSharesIssued, locale)}
             </CardTitle>
           </CardHeader>
           <CardContent className="text-center">
             <div className="text-sm font-semibold text-gray-600 dark:text-gray-200">
-              New Shares Issued
+              {t('pricedRound.newSharesIssued')}
             </div>
           </CardContent>
           <div className="text-sm text-gray-600 dark:text-gray-200 bottom-0 z-10 absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             {changes.newSharesIssued !== 0
               ? ` (${
                   changes.newSharesIssued > 0 ? "+" : ""
-                }${formatNumberWithCommas(changes.newSharesIssued)})`
+                }${formatNumberLocale(changes.newSharesIssued, locale)})`
               : ""}
           </div>
         </Card>
@@ -165,28 +167,28 @@ const PricedRound: React.FC<PricedRoundProps> = (props) => {
           <div className="absolute text-nt84bluedarker dark:text-nt84lightblue top-0 right-0 p-2 z-10">
             <QuestionMarkTooltipComponent>
               <div className="max-w-72">
-                Additional Options: these are the options created as part of the
-                round to expand the option table.
+                {t('pricedRound.additionalOptionsTooltip')}
               </div>
             </QuestionMarkTooltipComponent>
           </div>
           <CardHeader className="pb-0 text-center">
             <CardTitle className="text-xl font-semibold tracking-tight">
-              {formatNumberWithCommas(
-                current.pricedConversion.additionalOptions
+              {formatNumberLocale(
+                current.pricedConversion.additionalOptions,
+                locale
               )}
             </CardTitle>
           </CardHeader>
           <CardContent className="text-center">
             <div className="text-sm font-semibold text-gray-600 dark:text-gray-200">
-              Additional Options
+              {t('pricedRound.additionalOptions')}
             </div>
           </CardContent>
           <div className="text-sm text-gray-600 dark:text-gray-200 bottom-0 z-10 absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             {changes.additionalOptions !== 0
               ? ` (${
                   changes.additionalOptions > 0 ? "+" : ""
-                }${formatNumberWithCommas(changes.additionalOptions)})`
+                }${formatNumberLocale(changes.additionalOptions, locale)})`
               : ""}
           </div>
         </Card>
@@ -194,28 +196,23 @@ const PricedRound: React.FC<PricedRoundProps> = (props) => {
           <div className="absolute text-nt84bluedarker dark:text-nt84lightblue top-0 right-0 p-2 z-10">
             <QuestionMarkTooltipComponent>
               <div className="max-w-72">
-                Total Round Dilution: the percentage reduction in ownership for
-                existing shareholders from a round, calculated as the number of
-                new shares being issued from the transaction divided by the
-                fully diluted shares after the transaction
+                {t('pricedRound.totalRoundDilutionTooltip')}
               </div>
             </QuestionMarkTooltipComponent>
           </div>
           <CardHeader className="pb-0 text-center">
             <CardTitle className="text-xl font-semibold tracking-tight">
-              {current.totalRoundDilution.toFixed(2)}%
+              {formatNumberWithDecimals(current.totalRoundDilution, 2, locale)}%
             </CardTitle>
           </CardHeader>
           <CardContent className="text-center">
             <div className="text-sm font-semibold text-gray-600 dark:text-gray-200">
-              Total Round Dilution
+              {t('pricedRound.totalRoundDilution')}
             </div>
           </CardContent>
           <div className="text-sm text-gray-600 dark:text-gray-200 bottom-0 z-10 absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             {changes.dilution !== 0
-              ? ` (${changes.dilution > 0 ? "+" : ""}${changes.dilution.toFixed(
-                  2
-                )})`
+              ? ` (${changes.dilution > 0 ? "+" : ""}${formatNumberWithDecimals(changes.dilution, 2, locale)})`
               : ""}
           </div>
         </Card>
@@ -223,12 +220,12 @@ const PricedRound: React.FC<PricedRoundProps> = (props) => {
         <Card className="relative flex flex-col h-26 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
           <CardHeader className="pb-0 text-center">
             <CardTitle className="text-xl font-semibold tracking-tight">
-              ${formatNumberWithCommas(current.preMoney)}
+              {formatCurrencySymbol(locale)}{formatNumberLocale(current.preMoney, locale)}
             </CardTitle>
           </CardHeader>
           <CardContent className="text-center">
             <div className="text-sm font-semibold text-gray-600 dark:text-gray-200">
-              Pre Money
+              {t('pricedRound.preMoney')}
             </div>
             <div className="flex flex-row justify-between">
               <FaMinus
@@ -241,8 +238,9 @@ const PricedRound: React.FC<PricedRoundProps> = (props) => {
                 {preMoneyChange !== 0
                   ? ` (${
                       preMoneyChange > 0 ? "+" : ""
-                    }$${formatNumberWithCommas(
-                      current.preMoney - previous.preMoney
+                    }${formatCurrencySymbol(locale)}${formatNumberLocale(
+                      current.preMoney - previous.preMoney,
+                      locale
                     )})`
                   : ""}
               </div>
@@ -260,12 +258,12 @@ const PricedRound: React.FC<PricedRoundProps> = (props) => {
         <Card className="relative flex flex-col h-26 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
           <CardHeader className="pb-0 text-center">
             <CardTitle className="text-xl font-semibold tracking-tight">
-              ${formatNumberWithCommas(current.totalSeriesInvestment)}
+              {formatCurrencySymbol(locale)}{formatNumberLocale(current.totalSeriesInvestment, locale)}
             </CardTitle>
           </CardHeader>
           <CardContent className="text-center">
             <div className="text-sm font-semibold text-gray-600 dark:text-gray-200">
-              Investment
+              {t('pricedRound.investment')}
             </div>
             <div className="flex flex-row justify-between">
               <FaMinus
@@ -278,7 +276,7 @@ const PricedRound: React.FC<PricedRoundProps> = (props) => {
                 {investmentChange !== 0
                   ? ` (${
                       investmentChange > 0 ? "+" : ""
-                    }$${formatNumberWithCommas(investmentChange)})`
+                    }${formatCurrencySymbol(locale)}${formatNumberLocale(investmentChange, locale)})`
                   : ""}
               </div>
               <FaPlus
@@ -296,12 +294,12 @@ const PricedRound: React.FC<PricedRoundProps> = (props) => {
         <Card className="relative flex flex-col h-26 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
           <CardHeader className="pb-0 text-center">
             <CardTitle className="text-xl font-semibold tracking-tight">
-              ${formatNumberWithCommas(current.postMoney)}
+              {formatCurrencySymbol(locale)}{formatNumberLocale(current.postMoney, locale)}
             </CardTitle>
           </CardHeader>
           <CardContent className="text-center">
             <div className="text-sm font-semibold text-gray-600 dark:text-gray-200">
-              Post Money
+              {t('pricedRound.postMoney')}
             </div>
             <div className="flex flex-row justify-between">
               <FaMinus
@@ -314,7 +312,7 @@ const PricedRound: React.FC<PricedRoundProps> = (props) => {
                 {changes.postMoney !== 0
                   ? ` (${
                       changes.postMoney > 0 ? "+" : ""
-                    }$${formatNumberWithCommas(changes.postMoney)})`
+                    }${formatCurrencySymbol(locale)}${formatNumberLocale(changes.postMoney, locale)})`
                   : ""}
               </div>
               <FaPlus
@@ -332,18 +330,17 @@ const PricedRound: React.FC<PricedRoundProps> = (props) => {
         <Card className="relative flex flex-col h-26 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
           <div className="absolute text-nt84bluedarker dark:text-nt84lightblue top-0 right-0 p-2 z-10">
             <QuestionMarkTooltipComponent>
-              The target percentage of the new options pool, after the priced
-              round
+              {t('pricedRound.targetOptionsTooltip')}
             </QuestionMarkTooltipComponent>
           </div>
           <CardHeader className="pb-0 text-center">
             <CardTitle className="text-xl font-semibold tracking-tight">
-              {(currentTargetOptions * 100).toFixed(2)}%
+              {formatNumberWithDecimals(currentTargetOptions * 100, 2, locale)}%
             </CardTitle>
           </CardHeader>
           <CardContent className="text-center">
             <div className="text-sm font-semibold text-gray-600 dark:text-gray-200">
-              Target Options
+              {t('pricedRound.targetOptions')}
             </div>
             <div className="flex flex-row justify-between">
               <FaMinus
