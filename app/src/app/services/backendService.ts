@@ -42,8 +42,14 @@ export interface BackendResponse {
   lastModified: string;
 }
 
+/**
+ * Interface for error responses from the backend API.
+ * Backend may return either 'error' or 'message' field depending on the error type.
+ */
 interface BackendErrorResponse {
+  /** Detailed error message from the backend (preferred field) */
   error?: string;
+  /** Alternative error message field used by some endpoints */
   message?: string;
 }
 

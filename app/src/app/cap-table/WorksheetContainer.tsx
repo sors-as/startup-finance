@@ -332,7 +332,10 @@ const WorksheetContainer: React.FC<WorksheetContainerProps> = ({ onCreateNew }) 
     <div>
       {/* Error notification */}
       {stateStatus.error && (
-        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 max-w-2xl bg-red-500 text-white px-6 py-4 rounded-lg shadow-lg z-50">
+        <div 
+          className="fixed top-4 left-1/2 transform -translate-x-1/2 max-w-2xl bg-red-500 text-white px-6 py-4 rounded-lg shadow-lg z-50"
+          role="alert"
+        >
           <div className="flex items-start">
             <div className="flex-shrink-0">
               <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
