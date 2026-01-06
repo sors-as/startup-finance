@@ -11,8 +11,6 @@ interface SendEmailRequest {
 	worksheetData: any;
 	readOnlyUrl: string;
 	senderMessage?: string;
-	preRoundCapTable?: any;
-	postRoundCapTable?: any;
 }
 
 interface ResendEmailPayload {
@@ -64,9 +62,7 @@ export async function sendCapTableEmail(
 			worksheetName: request.worksheetName,
 			worksheetData: request.worksheetData,
 			readOnlyUrl: request.readOnlyUrl,
-			senderMessage: request.senderMessage,
-			preRoundCapTable: request.preRoundCapTable,
-			postRoundCapTable: request.postRoundCapTable
+			senderMessage: request.senderMessage
 		});
 
 		// Prepare Resend API payload

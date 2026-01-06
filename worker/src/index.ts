@@ -585,9 +585,6 @@ async function handleSendEmail(request: Request, env: Env, compositeId: string):
 				worksheetData,
 				readOnlyUrl,
 				senderMessage: body.senderMessage,
-				// TODO: Add cap table data when we have the calculation logic
-				preRoundCapTable: undefined,
-				postRoundCapTable: undefined,
 			},
 			env.RESEND_API_KEY
 		);
