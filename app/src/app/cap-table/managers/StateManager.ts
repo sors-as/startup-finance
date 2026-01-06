@@ -78,21 +78,30 @@ export class StateManager {
   async initialize(hash: string): Promise<void> {
     this.updateStatus({ isLoading: true, error: null });
 
+    console.log('🚀 Initializing StateManager', { hash: hash || '(empty)', hashLength: hash.length });
+
     try {
       if (hash.length === 0) {
         // No UUID in URL - create new document
+        console.log('📝 Creating new document (no hash in URL)');
         await this.createNewDocument();
       } else if (hash.charAt(0) === "A") {
         // Legacy base64 hash - convert using backend
+        console.log('🔄 Converting legacy hash');
         await this.convertLegacyHash(hash);
       } else {
         // UUID in URL - could be read-only (objectId) or read-write (objectId-editKey)
+        console.log('📂 Loading existing document from hash');
         await this.loadExistingDocument(hash);
       }
+      console.log('✅ StateManager initialization successful');
     } catch (error) {
-      console.error("Failed to initialize state:", error);
-      this.updateStatus({ error: `Failed to initialize: ${error}` });
+      console.error("❌ Failed to initialize state:", error);
+      // Extract more useful error message
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      this.updateStatus({ error: `Failed to initialize: ${errorMessage}` });
       // Fallback to local state
+      console.log('⚠️ Attempting fallback to local state');
       await this.createFallbackDocument(hash);
     } finally {
       this.updateStatus({ isLoading: false });

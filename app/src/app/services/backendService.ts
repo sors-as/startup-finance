@@ -132,19 +132,42 @@ export class BackendService {
     const tempId = this.generateBase58Id(17);
     const tempEditKey = this.generateBase58Id(6);
     
-    const response = await fetch(`${BACKEND_URL}/api/objects/${tempId}-${tempEditKey}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    console.log(`📝 Creating new object with ID: ${tempId}`);
+    
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/objects/${tempId}-${tempEditKey}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-    if (!response.ok) {
-      throw new Error(`Failed to create object: ${response.statusText}`);
+      if (!response.ok) {
+        // Try to get detailed error from response body
+        let errorMessage = response.statusText;
+        try {
+          const errorData = await response.json();
+          if (errorData.error) {
+            errorMessage = errorData.error;
+          }
+          console.error('❌ Backend error details:', errorData);
+        } catch (e) {
+          // Response body wasn't JSON, use statusText
+          console.error('❌ Backend error (no JSON):', response.status, response.statusText);
+        }
+        
+        throw new Error(`Failed to create object (${response.status}): ${errorMessage}`);
+      }
+
+      console.log(`✅ Successfully created object ${tempId}`);
+      return { id: tempId, editKey: tempEditKey };
+    } catch (error) {
+      // Log the full error for debugging
+      console.error('❌ Error creating object:', error);
+      // Re-throw to let caller handle it
+      throw error;
     }
-
-    return { id: tempId, editKey: tempEditKey };
   }
 
   private generateBase58Id(len: number = 17): string {
@@ -157,29 +180,68 @@ export class BackendService {
   }
 
   async getObject(id: string): Promise<BackendResponse> {
-    const response = await fetch(`${BACKEND_URL}/api/objects/${id}`);
+    console.log(`📥 Fetching object: ${id}`);
+    
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/objects/${id}`);
 
-    if (!response.ok) {
-      throw new Error(`Failed to get object: ${response.statusText}`);
+      if (!response.ok) {
+        // Try to get detailed error from response body
+        let errorMessage = response.statusText;
+        try {
+          const errorData = await response.json();
+          if (errorData.error) {
+            errorMessage = errorData.error;
+          }
+          console.error('❌ Backend error details:', errorData);
+        } catch (e) {
+          // Response body wasn't JSON, use statusText
+          console.error('❌ Backend error (no JSON):', response.status, response.statusText);
+        }
+        
+        throw new Error(`Failed to get object (${response.status}): ${errorMessage}`);
+      }
+
+      console.log(`✅ Successfully fetched object ${id}`);
+      return response.json();
+    } catch (error) {
+      console.error('❌ Error fetching object:', error);
+      throw error;
     }
-
-    return response.json();
   }
 
   async updateObject(id: string, editKey: string, data: IConversionStateData): Promise<BackendResponse> {
-    const response = await fetch(`${BACKEND_URL}/api/objects/${id}-${editKey}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/objects/${id}-${editKey}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-    if (!response.ok) {
-      throw new Error(`Failed to update object: ${response.statusText}`);
+      if (!response.ok) {
+        // Try to get detailed error from response body
+        let errorMessage = response.statusText;
+        try {
+          const errorData = await response.json();
+          if (errorData.error) {
+            errorMessage = errorData.error;
+          }
+          console.error('❌ Backend error details:', errorData);
+        } catch (e) {
+          // Response body wasn't JSON, use statusText
+          console.error('❌ Backend error (no JSON):', response.status, response.statusText);
+        }
+        
+        throw new Error(`Failed to update object (${response.status}): ${errorMessage}`);
+      }
+      
+      return response.json();
+    } catch (error) {
+      console.error('❌ Error updating object:', error);
+      throw error;
     }
-    
-    return response.json();
   }
 
   connectWebSocket(id: string, onMessage: (message: unknown) => void): WebSocket {
@@ -411,23 +473,45 @@ export class BackendService {
   }
 
   async convertLegacyHash(hash: string): Promise<{ id: string; editKey: string; data: IConversionStateData }> {
-    const response = await fetch(`${BACKEND_URL}/api/legacy/convert`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ hash }),
-    });
+    console.log(`🔄 Converting legacy hash...`);
+    
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/legacy/convert`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ hash }),
+      });
 
-    if (!response.ok) {
-      throw new Error(`Failed to convert legacy hash: ${response.statusText}`);
+      if (!response.ok) {
+        // Try to get detailed error from response body
+        let errorMessage = response.statusText;
+        try {
+          const errorData = await response.json();
+          if (errorData.error) {
+            errorMessage = errorData.error;
+          }
+          console.error('❌ Backend error details:', errorData);
+        } catch (e) {
+          // Response body wasn't JSON, use statusText
+          console.error('❌ Backend error (no JSON):', response.status, response.statusText);
+        }
+        
+        throw new Error(`Failed to convert legacy hash (${response.status}): ${errorMessage}`);
+      }
+
+      const result = await response.json();
+      console.log(`✅ Successfully converted legacy hash`);
+      
+      return {
+        id: result.id,
+        editKey: result.editKey,
+        data: result.data,
+      };
+    } catch (error) {
+      console.error('❌ Error converting legacy hash:', error);
+      throw error;
     }
-
-    const result = await response.json();
-    return {
-      id: result.id,
-      editKey: result.editKey,
-      data: result.data,
-    };
   }
 }
