@@ -108,34 +108,70 @@ try {
     }
   }
 
-  // Step 4: Deploy the worker
+  // Step 4: Deploy the worker and capture output to extract the URL
   console.log(`🚀 Deploying worker to ${environment}...`);
   const configFile = `wrangler.${environment}.toml`;
   
-  execSync(`pnpm exec wrangler deploy --config ${configFile}`, { 
-    stdio: 'inherit', 
+  // Run wrangler deploy and capture output to extract the deployed URL
+  const deployOutput = execSync(`pnpm exec wrangler deploy --config ${configFile}`, { 
+    encoding: 'utf8',
     cwd: workerDir 
   });
-
-  // Step 5: Get the deployment URL
-  const workerName = environment === 'staging' 
-    ? '1984-startup-finance-worker-staging' 
-    : '1984-startup-finance-worker';
   
+  // Print the deployment output
+  console.log(deployOutput);
+
+  // Step 5: Extract the deployment URL from wrangler output
+  // Wrangler outputs lines like: "Published ... to https://worker-name.subdomain.workers.dev"
+  // or "Current Version ID: ..." followed by URL information
+  let deployedUrl = null;
+  
+  // Try to extract URL from "Published ... to <url>" pattern
+  const publishedMatch = deployOutput.match(/Published[^]*?to\s+(https:\/\/[^\s]+)/i);
+  if (publishedMatch) {
+    deployedUrl = publishedMatch[1];
+  }
+  
+  // Also try the "https://<name>.<subdomain>.workers.dev" pattern directly
+  if (!deployedUrl) {
+    const workersDevMatch = deployOutput.match(/(https:\/\/[^\s]+\.workers\.dev)/i);
+    if (workersDevMatch) {
+      deployedUrl = workersDevMatch[1];
+    }
+  }
+  
+  // Also check for custom domain patterns from routes - extract from wrangler output
+  // Wrangler outputs custom domains when deploying to routes
+  let customDomain = null;
+  const customDomainMatch = deployOutput.match(/https:\/\/([a-zA-Z0-9][-a-zA-Z0-9]*\.[a-zA-Z0-9][-a-zA-Z0-9.]*[a-zA-Z0-9])(?![^\s]*\.workers\.dev)/);
+  if (customDomainMatch) {
+    customDomain = customDomainMatch[0];
+  }
+
   console.log('');
   console.log('🎉 Deployment successful!');
   console.log('');
   console.log(`📍 ${environment.toUpperCase()} URLs:`);
-  console.log(`   Worker: https://${workerName}.mdp-005.workers.dev`);
-  console.log(`   App:    https://${workerName}.mdp-005.workers.dev`);
+  
+  if (deployedUrl) {
+    console.log(`   Worker: ${deployedUrl}`);
+    console.log(`   App:    ${deployedUrl}`);
+  } else {
+    console.log('   (URL could not be extracted from deployment output)');
+  }
+  
+  if (customDomain) {
+    console.log(`   Custom Domain: ${customDomain}`);
+  }
+  
   console.log('');
   
-  if (environment === 'staging') {
+  if (environment === 'staging' && deployedUrl) {
     console.log('💡 To test frontend against this staging backend:');
-    console.log(`   VITE_BACKEND_URL=https://${workerName}.mdp-005.workers.dev pnpm run dev`);
+    console.log(`   VITE_BACKEND_URL=${deployedUrl} pnpm run dev`);
     console.log('');
     console.log('💡 Or update app/.env.staging:');
-    console.log(`   VITE_STAGING_BACKEND_URL=https://${workerName}.mdp-005.workers.dev`);
+    console.log(`   VITE_STAGING_BACKEND_URL=${deployedUrl}`);
   }
 
 } catch (error) {
