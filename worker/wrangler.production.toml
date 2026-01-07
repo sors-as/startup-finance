@@ -3,6 +3,10 @@ name = "sors-startup-finance-worker"
 main = "src/index.ts"
 compatibility_date = "2025-06-20"
 
+[[routes]]
+pattern = "finance.sors.no"
+custom_domain = true
+
 # [[migrations]]
 # tag = "v4"
 # added_classes = ["WorksheetCoordinatorDurableObject"]
