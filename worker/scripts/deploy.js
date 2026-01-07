@@ -140,9 +140,13 @@ try {
     }
   }
   
-  // Also check for custom domain patterns from routes
-  const customDomainMatch = deployOutput.match(/(https:\/\/finance\.sors\.no)/i);
-  const customDomain = customDomainMatch ? customDomainMatch[1] : null;
+  // Also check for custom domain patterns from routes - extract from wrangler output
+  // Wrangler outputs custom domains when deploying to routes
+  let customDomain = null;
+  const customDomainMatch = deployOutput.match(/https:\/\/([a-zA-Z0-9][-a-zA-Z0-9]*\.[a-zA-Z0-9][-a-zA-Z0-9.]*[a-zA-Z0-9])(?![^\s]*\.workers\.dev)/);
+  if (customDomainMatch) {
+    customDomain = customDomainMatch[0];
+  }
 
   console.log('');
   console.log('🎉 Deployment successful!');
