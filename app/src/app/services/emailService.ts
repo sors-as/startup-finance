@@ -85,9 +85,9 @@ async function getBackendUrl(): Promise<string> {
 		// In development mode, check if we want to use local worker
 		return import.meta.env.VITE_USE_LOCAL_WORKER === 'true'
 			? 'http://localhost:8787'
-			: window.location.origin;
+			: 'https://sors-startup-finance-worker.morten-helgaland.workers.dev';
 	}
 
-	// Priority 4: Use current origin - the frontend is served from the same worker as the backend API
-	return window.location.origin;
+	// Priority 4: Default production worker
+	return 'https://sors-startup-finance-worker.morten-helgaland.workers.dev';
 }
