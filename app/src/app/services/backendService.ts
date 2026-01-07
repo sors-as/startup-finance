@@ -23,15 +23,15 @@ const getBackendUrl = () => {
     // In development mode, check if we want to use local worker
     const url = import.meta.env.VITE_USE_LOCAL_WORKER === 'true' 
       ? 'http://localhost:8787' 
-      : 'https://sors-startup-finance-worker.morten-helgaland.workers.dev';
+      : window.location.origin;
     console.log(`🔗 Using development backend URL: ${url}`);
     return url;
   }
   
-  // Priority 4: Default production worker
-  const defaultUrl = 'https://sors-startup-finance-worker.morten-helgaland.workers.dev';
-  console.log(`🔗 Using default backend URL: ${defaultUrl}`);
-  return defaultUrl;
+  // Priority 4: Use current origin - the frontend is served from the same worker as the backend API
+  const url = window.location.origin;
+  console.log(`🔗 Using current origin as backend URL: ${url}`);
+  return url;
 };
 
 const BACKEND_URL = getBackendUrl();

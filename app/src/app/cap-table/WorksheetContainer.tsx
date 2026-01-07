@@ -447,11 +447,11 @@ function getBackendUrl(): string {
   if (import.meta.env.DEV) {
     return import.meta.env.VITE_USE_LOCAL_WORKER === 'true' 
       ? 'http://localhost:8787' 
-      : 'https://sors-startup-finance-worker.morten-helgaland.workers.dev';
+      : window.location.origin;
   }
   
-  // Priority 4: Default production worker
-  return 'https://sors-startup-finance-worker.morten-helgaland.workers.dev';
+  // Priority 4: Use current origin - the frontend is served from the same worker as the backend API
+  return window.location.origin;
 }
 
 export default WorksheetContainer;
