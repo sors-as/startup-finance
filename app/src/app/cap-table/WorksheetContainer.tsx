@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { getBackendWebSocketUrl } from "@config/backendConfig";
 
 import { IConversionState } from "./state/ConversionState";
 import { getRandomData, initialState } from "./state/initialState";
@@ -143,8 +144,7 @@ const WorksheetContainer: React.FC<WorksheetContainerProps> = ({ onCreateNew }) 
 
         // Connect WebSocket if we have an objectId
         if (state.objectId) {
-          const backendUrl = getBackendUrl();
-          const wsUrl = `${backendUrl.replace('https://', 'wss://').replace('http://', 'ws://')}/api/objects/${state.objectId}/ws`;
+          const wsUrl = `${getBackendWebSocketUrl()}/api/objects/${state.objectId}/ws`;
           webSocketManagerRef.current.connect(wsUrl);
         }
 
@@ -294,8 +294,7 @@ const WorksheetContainer: React.FC<WorksheetContainerProps> = ({ onCreateNew }) 
       
       // Connect new WebSocket for the cloned document
       if (webSocketManagerRef.current) {
-        const backendUrl = getBackendUrl();
-        const wsUrl = `${backendUrl.replace('https://', 'wss://').replace('http://', 'ws://')}/api/objects/${id}/ws`;
+        const wsUrl = `${getBackendWebSocketUrl()}/api/objects/${id}/ws`;
         webSocketManagerRef.current.connect(wsUrl);
       }
       
@@ -426,32 +425,5 @@ const WorksheetContainer: React.FC<WorksheetContainerProps> = ({ onCreateNew }) 
     </div>
   );
 };
-
-// Helper function to get backend URL (extracted from backendService)
-function getBackendUrl(): string {
-  // Priority 1: Explicit VITE_BACKEND_URL (highest priority)
-  if (import.meta.env.VITE_BACKEND_URL) {
-    return import.meta.env.VITE_BACKEND_URL;
-  }
-  
-  // Priority 2: Environment-specific URLs
-  if (import.meta.env.VITE_STAGING_BACKEND_URL && import.meta.env.VITE_ENVIRONMENT === 'staging') {
-    return import.meta.env.VITE_STAGING_BACKEND_URL;
-  }
-  
-  if (import.meta.env.VITE_PRODUCTION_BACKEND_URL && import.meta.env.VITE_ENVIRONMENT === 'production') {
-    return import.meta.env.VITE_PRODUCTION_BACKEND_URL;
-  }
-  
-  // Priority 3: Development mode detection
-  if (import.meta.env.DEV) {
-    return import.meta.env.VITE_USE_LOCAL_WORKER === 'true' 
-      ? 'http://localhost:8787' 
-      : 'https://sors-startup-finance-worker.morten-helgaland.workers.dev';
-  }
-  
-  // Priority 4: Default production worker
-  return 'https://sors-startup-finance-worker.morten-helgaland.workers.dev';
-}
 
 export default WorksheetContainer;

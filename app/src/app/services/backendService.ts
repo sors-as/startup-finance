@@ -1,38 +1,5 @@
 import { IConversionStateData } from "@/cap-table/state/ConversionState";
-
-const getBackendUrl = () => {
-  // Priority 1: Explicit VITE_BACKEND_URL (highest priority)
-  if (import.meta.env.VITE_BACKEND_URL) {
-    console.log(`🔗 Using explicit backend URL: ${import.meta.env.VITE_BACKEND_URL}`);
-    return import.meta.env.VITE_BACKEND_URL;
-  }
-  
-  // Priority 2: Environment-specific URLs
-  if (import.meta.env.VITE_STAGING_BACKEND_URL && import.meta.env.VITE_ENVIRONMENT === 'staging') {
-    console.log(`🔗 Using staging backend URL: ${import.meta.env.VITE_STAGING_BACKEND_URL}`);
-    return import.meta.env.VITE_STAGING_BACKEND_URL;
-  }
-  
-  if (import.meta.env.VITE_PRODUCTION_BACKEND_URL && import.meta.env.VITE_ENVIRONMENT === 'production') {
-    console.log(`🔗 Using production backend URL: ${import.meta.env.VITE_PRODUCTION_BACKEND_URL}`);
-    return import.meta.env.VITE_PRODUCTION_BACKEND_URL;
-  }
-  
-  // Priority 3: Development mode detection
-  if (import.meta.env.DEV) {
-    // In development mode, check if we want to use local worker
-    const url = import.meta.env.VITE_USE_LOCAL_WORKER === 'true' 
-      ? 'http://localhost:8787' 
-      : 'https://sors-startup-finance-worker.morten-helgaland.workers.dev';
-    console.log(`🔗 Using development backend URL: ${url}`);
-    return url;
-  }
-  
-  // Priority 4: Default production worker
-  const defaultUrl = 'https://sors-startup-finance-worker.morten-helgaland.workers.dev';
-  console.log(`🔗 Using default backend URL: ${defaultUrl}`);
-  return defaultUrl;
-};
+import { getBackendUrl, getBackendWebSocketUrl } from "@config/backendConfig";
 
 const BACKEND_URL = getBackendUrl();
 
@@ -154,7 +121,7 @@ export class BackendService {
         errorMessage = errorData.message;
       }
       console.error('❌ Backend error details:', errorData);
-    } catch (e) {
+    } catch {
       // Response body wasn't JSON, use statusText
       console.error('❌ Backend error (no JSON):', response.status, response.statusText);
     }
@@ -255,7 +222,7 @@ export class BackendService {
       this.cleanupConnection(id);
     }
 
-    const wsUrl = `${BACKEND_URL.replace('https://', 'wss://').replace('http://', 'ws://')}/api/objects/${id}/ws`;
+    const wsUrl = `${getBackendWebSocketUrl()}/api/objects/${id}/ws`;
     
     // Create connection object
     const wsConnection: WebSocketConnection = {
