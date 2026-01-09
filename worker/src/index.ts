@@ -1,6 +1,3 @@
-import holdingHtml from "./pages/holding.html";
-import dashboardHtml from "./pages/dashboard.html";
-import demoHtml from "./pages/demo.html";
 import { decompressState, isLegacyHash } from "./utils/stateCompression";
 import { sendCapTableEmail, checkRateLimit, recordEmailSend, validateEmails } from "./utils/emailService";
 
