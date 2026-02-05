@@ -2,6 +2,10 @@ import holdingHtml from "./pages/holding.html";
 import dashboardHtml from "./pages/dashboard.html";
 import demoHtml from "./pages/demo.html";
 import { decompressState, isLegacyHash } from "./utils/stateCompression";
+import { fitConversion } from "./library/conversion-solver";
+import { buildPricedRoundCapTable } from "./library/cap-table/priced-round";
+import { populateSafeCaps } from "./library/safe-calcs";
+import { CapTableRowType, CommonRowType, SAFENote, CommonStockholder, SeriesInvestor, StakeHolder } from "./library/cap-table/types";
 
 interface WorksheetData {
 	id: string;
@@ -659,6 +663,205 @@ async function handlePut(request: Request, env: Env, compositeId: string): Promi
 	}
 }
 
+// Input types for the calculate API
+interface CalculateRequest {
+	preMoneyValuation: number;
+	targetOptionsPool: number;
+	shareholders: Array<{ name: string; shares: number }>;
+	unusedOptions: number;
+	safes: Array<{
+		name: string;
+		investment: number;
+		cap: number;
+		discount: number;
+		type: "pre" | "post";
+	}>;
+	seriesInvestment: Array<{ name: string; investment: number }>;
+}
+
+async function handleCalculate(request: Request): Promise<Response> {
+	const corsHeaders = {
+		"Access-Control-Allow-Origin": "*",
+		"Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+		"Access-Control-Allow-Headers": "Content-Type",
+	};
+
+	try {
+		const body = await request.text();
+		let requestData: CalculateRequest;
+
+		try {
+			requestData = JSON.parse(body);
+		} catch {
+			return new Response(JSON.stringify({
+				success: false,
+				error: "Invalid JSON in request body"
+			}), {
+				status: 400,
+				headers: { ...corsHeaders, "Content-Type": "application/json" }
+			});
+		}
+
+		// Validate required fields
+		if (typeof requestData.preMoneyValuation !== 'number' || requestData.preMoneyValuation <= 0) {
+			return new Response(JSON.stringify({
+				success: false,
+				error: "preMoneyValuation must be a positive number"
+			}), {
+				status: 400,
+				headers: { ...corsHeaders, "Content-Type": "application/json" }
+			});
+		}
+
+		if (!Array.isArray(requestData.shareholders) || requestData.shareholders.length === 0) {
+			return new Response(JSON.stringify({
+				success: false,
+				error: "shareholders must be a non-empty array"
+			}), {
+				status: 400,
+				headers: { ...corsHeaders, "Content-Type": "application/json" }
+			});
+		}
+
+		// Convert target options pool from percentage (e.g., 10 for 10%) to decimal
+		const targetOptionsPct = (requestData.targetOptionsPool || 0) / 100;
+		const unusedOptions = requestData.unusedOptions || 0;
+
+		// Build stakeholders array
+		const stakeHolders: StakeHolder[] = [];
+
+		// Add common shareholders
+		let totalCommonShares = 0;
+		for (const shareholder of requestData.shareholders) {
+			stakeHolders.push({
+				name: shareholder.name,
+				shares: shareholder.shares,
+				type: CapTableRowType.Common,
+				commonType: CommonRowType.Shareholder,
+			} as CommonStockholder);
+			totalCommonShares += shareholder.shares;
+		}
+
+		// Add unused options as a special common stockholder if > 0
+		if (unusedOptions > 0) {
+			stakeHolders.push({
+				name: "Unused Options",
+				shares: unusedOptions,
+				type: CapTableRowType.Common,
+				commonType: CommonRowType.UnusedOptions,
+			} as CommonStockholder);
+		}
+
+		// Add SAFEs
+		const safes: SAFENote[] = (requestData.safes || []).map((safe) => ({
+			name: safe.name,
+			investment: safe.investment,
+			cap: safe.cap,
+			discount: (safe.discount || 0) / 100, // Convert percentage to decimal
+			type: CapTableRowType.Safe,
+			conversionType: safe.type === "pre" ? "pre" : "post",
+		} as SAFENote));
+
+		// Populate MFN caps if any
+		const processedSafes = populateSafeCaps(safes);
+
+		for (const safe of processedSafes) {
+			stakeHolders.push(safe);
+		}
+
+		// Add series investors
+		const seriesInvestments: number[] = [];
+		for (const investor of requestData.seriesInvestment || []) {
+			stakeHolders.push({
+				name: investor.name,
+				investment: investor.investment,
+				type: CapTableRowType.Series,
+				round: 1,
+			} as SeriesInvestor);
+			seriesInvestments.push(investor.investment);
+		}
+
+		// Run the conversion calculation
+		const conversion = fitConversion(
+			requestData.preMoneyValuation,
+			totalCommonShares,
+			processedSafes,
+			unusedOptions,
+			targetOptionsPct,
+			seriesInvestments
+		);
+
+		// Build the cap table
+		const capTable = buildPricedRoundCapTable(conversion, stakeHolders);
+
+		// Format response
+		const totalSeriesInvestment = seriesInvestments.reduce((a, b) => a + b, 0);
+		const totalSafeInvestment = processedSafes.reduce((a, s) => a + s.investment, 0);
+
+		// Calculate founder dilution (original common shares / total shares)
+		const founderDilution = (1 - (totalCommonShares / conversion.totalShares)) * 100;
+
+		const response = {
+			success: true,
+			result: {
+				pricePerShare: conversion.pps,
+				totalShares: conversion.totalShares,
+				postMoneyValuation: requestData.preMoneyValuation + totalSeriesInvestment,
+				capTable: [
+					...capTable.common.map(row => ({
+						name: row.name,
+						type: "common",
+						shares: row.shares,
+						ownershipPercent: (row.ownershipPct || 0) * 100,
+					})),
+					...capTable.safes.map(row => ({
+						name: row.name,
+						type: "safe",
+						shares: row.shares,
+						ownershipPercent: (row.ownershipPct || 0) * 100,
+						investment: row.investment,
+						pps: row.pps,
+					})),
+					...capTable.series.map(row => ({
+						name: row.name,
+						type: "series",
+						shares: row.shares,
+						ownershipPercent: row.ownershipPct * 100,
+						investment: row.investment,
+						pps: row.pps,
+					})),
+					{
+						name: capTable.refreshedOptionsPool.name,
+						type: "options",
+						shares: capTable.refreshedOptionsPool.shares,
+						ownershipPercent: capTable.refreshedOptionsPool.ownershipPct * 100,
+					},
+				],
+				summary: {
+					totalInvestment: totalSeriesInvestment + totalSafeInvestment,
+					founderDilution: Math.round(founderDilution * 100) / 100,
+					optionsPoolPercent: (conversion.totalOptions / conversion.totalShares) * 100,
+				},
+			},
+		};
+
+		return new Response(JSON.stringify(response, null, 2), {
+			status: 200,
+			headers: { ...corsHeaders, "Content-Type": "application/json" }
+		});
+
+	} catch (error) {
+		console.error("Error in calculate handler:", error);
+		return new Response(JSON.stringify({
+			success: false,
+			error: error instanceof Error ? error.message : "Internal server error"
+		}), {
+			status: 500,
+			headers: { ...corsHeaders, "Content-Type": "application/json" }
+		});
+	}
+}
+
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 		const url = new URL(request.url);
@@ -675,6 +878,11 @@ export default {
 		// Handle legacy conversion endpoint
 		if (url.pathname === "/api/legacy/convert" && request.method === "POST") {
 			return handleLegacyConversion(request, env);
+		}
+
+		// Handle calculate endpoint
+		if (url.pathname === "/api/calculate" && request.method === "POST") {
+			return handleCalculate(request);
 		}
 
 		// Handle API routes
