@@ -1,4 +1,8 @@
 import { decompressState, isLegacyHash } from "./utils/stateCompression";
+import { fitConversion } from "./library/conversion-solver";
+import { buildPricedRoundCapTable } from "./library/cap-table/priced-round";
+import { populateSafeCaps } from "./library/safe-calcs";
+import { CapTableRowType, CommonRowType, SAFENote, CommonStockholder, SeriesInvestor, StakeHolder } from "./library/cap-table/types";
 
 import { sendCapTableEmail, checkRateLimit, recordEmailSend, validateEmails } from "./utils/emailService";
 
