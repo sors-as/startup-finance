@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import WorksheetContainer from "./WorksheetContainer";
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { LanguagePicker } from '@/components/LanguagePicker';
 
 const Page: React.FC = () => {
   // Dark mode state
@@ -73,11 +72,8 @@ const Page: React.FC = () => {
         {/* WorksheetContainer handles all the complex logic */}
         <WorksheetContainer onCreateNew={createNewState} />
 
-        {/* Language picker and dark mode toggle at top right corner */}
+        {/* Dark mode toggle at top right corner */}
         <div className="absolute top-20 right-4 flex items-center gap-3">
-          {/* Language Picker */}
-          <LanguagePicker />
-          
           {/* Dark mode toggle */}
           <button
             onClick={toggleDarkMode}
